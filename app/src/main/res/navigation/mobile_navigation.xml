@@ -25,11 +25,11 @@
     <fragment
         android:id="@+id/navigation_science"
         android:name="com.example.newsapp.ui.science.ScienceFragment"
-        android:label="ScienceFragment"
+        android:label="Science"
         tools:layout="@layout/fragment_science" />
     <fragment
         android:id="@+id/navigation_tech"
         android:name="com.example.newsapp.ui.tech.TechFragment"
-        android:label="TechFragment"
+        android:label="Tech"
         tools:layout="@layout/fragment_tech" />
 </navigation>

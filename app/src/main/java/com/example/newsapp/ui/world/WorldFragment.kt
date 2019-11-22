@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.newsapp.R
+import com.example.newsapp.adapter.WorldAdapter
 
 class WorldFragment : Fragment() {
 
@@ -22,10 +23,12 @@ class WorldFragment : Fragment() {
         worldViewModel =
             ViewModelProviders.of(this).get(WorldViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_world, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        worldViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
+        var adapter=WorldAdapter()
+
+//        val textView: TextView = root.findViewById(R.id.text)
+//        worldViewModel.text.observe(this, Observer {
+//            textView.text = it
+//        })
         return root
     }
 }
