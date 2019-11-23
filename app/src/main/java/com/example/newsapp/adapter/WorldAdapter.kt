@@ -10,14 +10,18 @@ import com.example.newsapp.R
 import com.example.newsapp.data.World
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
-    var list = listOf<World>()
+    var worldList = listOf<World>()
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.news_item, parent, false)
         return MyViewHolder(view)
     }
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = 6
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
@@ -37,7 +41,7 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
             description.text =
                 "Robbie does his full Rat Pack tribute act on a bunch of seasonal standards, and throws in some bonkers Christmas bonus songs of his own."
             date.text = "22nd November, 2019"
-            newsImage.setImageResource(R.drawable.ic_dashboard_black_24dp)
+            newsImage.setImageResource(R.drawable.born_a_crime)
         }
 
     }
