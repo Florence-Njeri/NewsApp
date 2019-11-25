@@ -7,7 +7,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class WorldNews {
+object WorldNews {
 
     //Creating Auth Interceptor to add api_key query in front of all the requests.
     private val authInterceptor = Interceptor { chain ->
@@ -38,5 +38,5 @@ class WorldNews {
         .build()
 
 
-    val theGuardianApi:WorldNewsService  = retrofit().create(WorldNewsService::class.java)
+   val theGuardianApi:WorldNewsApi  = retrofit().create(WorldNewsApi::class.java)
 }

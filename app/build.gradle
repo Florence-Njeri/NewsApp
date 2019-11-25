@@ -45,6 +45,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    //ViewModel
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     //Networking dependencies
     def moshiVersion="1.8.0"

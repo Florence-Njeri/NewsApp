@@ -23,8 +23,7 @@ class WorldFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        worldViewModel =
-            ViewModelProviders.of(this).get(WorldViewModel::class.java)
+        worldViewModel =ViewModelProviders.of(this).get(WorldViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_world, container, false)
         var adapter = WorldAdapter()
         binding.worldNewsList.adapter = adapter
@@ -33,6 +32,13 @@ class WorldFragment : Fragment() {
             it?.let{
                 adapter.worldList= it
             }
+        })
+
+        worldViewModel.fetchNews()
+
+        worldViewModel.fetchNews().observe(this, Observer {
+
+            //TODO - Your Update UI Logic
         })
 
 

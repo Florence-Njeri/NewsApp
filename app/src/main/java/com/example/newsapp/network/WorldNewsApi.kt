@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 //add all the required API calls
-interface WorldNewsService {
+interface WorldNewsApi {
     @GET("search")
     fun getNews() : Deferred<Response<NewsResponse>>
 //    @GET("movie/{id}")

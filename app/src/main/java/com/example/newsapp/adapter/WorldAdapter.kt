@@ -21,11 +21,12 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         return MyViewHolder(view)
     }
 
-    override fun getItemCount() = 6
+    override fun getItemCount() = worldList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        holder.bind()
+        val news: News = getItem(position)
+        holder.bind(news)
     }
 
 
@@ -35,13 +36,11 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var description: TextView = view.findViewById(R.id.description)
         var date: TextView = view.findViewById(R.id.date)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
-        fun bind(/*News*/) {
-            sectionName.text = "News"
-            webTitle.text = "Robbie Williams: The Christmas Present review – perfect for regifting."
-            description.text =
-                "Robbie does his full Rat Pack tribute act on a bunch of seasonal standards, and throws in some bonkers Christmas bonus songs of his own."
-            date.text = "22nd November, 2019"
-            newsImage.setImageResource(R.drawable.born_a_crime)
+        fun bind(news:News) {
+            sectionName.text = news.sectionName
+            webTitle.text = news.webTitle
+            date.text = news.date
+            newsImage.setImageResource(news.image)
         }
 
     }
