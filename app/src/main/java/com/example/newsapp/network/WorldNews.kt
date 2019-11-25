@@ -32,7 +32,7 @@ class WorldNews {
 
     fun retrofit(): Retrofit = Retrofit.Builder()
         .client(theGuardianClient)
-        .baseUrl("https://content.guardianapis.com/search?")
+        .baseUrl("https://content.guardianapis.com/")
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()

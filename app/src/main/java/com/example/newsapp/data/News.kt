@@ -4,7 +4,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
 
-data class World(
+data class News(
     var sectionName: String,
     var date: String,
     var webTitle: String,
@@ -14,11 +14,11 @@ data class World(
 
 // Data Model for the Response returned from the the guardian Api
 data class NewsResponse(
-    val results: List<World>
+    val results: List<News>
 )
 
 //A retrofit Network Interface for the Api
-interface TmdbApi {
+interface TheGuardianApi {
     @GET("movie/popular")
-    fun getPopularMovie(): Deferred<Response<NewsResponse>>
+    fun getNews(): Deferred<Response<NewsResponse>>
 }
