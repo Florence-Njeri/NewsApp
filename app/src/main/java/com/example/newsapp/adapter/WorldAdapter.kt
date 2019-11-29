@@ -25,7 +25,7 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        val news: News = getItem(position)
+        val news: News = worldList[position]
         holder.bind(news)
     }
 
@@ -38,9 +38,9 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var newsImage: ImageView = view.findViewById(R.id.imageView)
         fun bind(news:News) {
             sectionName.text = news.sectionName
-            webTitle.text = news.webTitle
+            webTitle.text = news.title
             date.text = news.date
-            newsImage.setImageResource(news.image)
+            newsImage.setImageResource(news.thumbnail)
         }
 
     }

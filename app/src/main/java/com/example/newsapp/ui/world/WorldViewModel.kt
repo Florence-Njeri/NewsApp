@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.data.News
-import com.example.newsapp.network.WorldNews
+import com.example.newsapp.network.NetworkClient
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
+
 
 /**
  *
@@ -16,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
  */
 
 class WorldViewModel : ViewModel() {
-    private lateinit var newsList: MutableList<News>
+    var newsListLiveData: LiveData<List<News>>? = null
     private val _list = MutableLiveData<List<News>>().apply {
 
         }
@@ -30,15 +31,15 @@ class WorldViewModel : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository : NewsRepository =NewsRepository(WorldNews.theGuardianApi)
+    private val repository : NewsRepository =NewsRepository(NetworkClient.theGuardianApi)
 
 
     val popularMoviesLiveData = MutableLiveData<MutableList<News>>()
 
     fun fetchNews(){
         scope.launch {
-            newsList = repository.getNews()!!
-            popularMoviesLiveData.postValue(newsList)
+           newsListLiveData = repository.getNews()
+//            popularMoviesLiveData.postValue(newsListLiveData)
         }
     }
 
