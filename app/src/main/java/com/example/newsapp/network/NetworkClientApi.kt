@@ -15,8 +15,8 @@ import retrofit2.http.Query
 interface NetworkClientApi {
 //    @GET("search?")
 //    fun getNews(@Query("api_key") api_key: String): Call<News>
-    @GET("search?")
-    fun getNews(@Query("api_key,show-fields") api_key: String) : Deferred<Response<NewsResponse>>
+    @GET("search")
+    fun getNewsAsync() : Deferred<Response<NewsResponse>>
 //    @GET("movie/{id}")
 //    fun getNewsById(@Path("id") id:Int): Deferred<Response<News>>
 }

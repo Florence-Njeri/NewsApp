@@ -24,11 +24,11 @@ data class News(
 
 // Data Model for the Response returned from the the guardian Api
 data class NewsResponse(
-    val results: MutableLiveData<List<News>>
+    val results: MutableList<News>
 )
 
 //A retrofit Network Interface for the Api
 interface TheGuardianApi {
-    @GET("movie/popular")
+    @GET("search")
     fun getNews(): Deferred<Response<NewsResponse>>
 }

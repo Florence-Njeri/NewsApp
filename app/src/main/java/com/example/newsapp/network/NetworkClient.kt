@@ -20,6 +20,8 @@ object NetworkClient {
             .newBuilder()
             .addQueryParameter("api_key", AppConstants.theGuardianApiKey )
             .addQueryParameter("show-fields","thumbnail")
+            .addQueryParameter("q","world")
+            .addQueryParameter("order-by","relevance")
             .build()
 
         val newRequest = chain.request()

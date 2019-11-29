@@ -16,8 +16,7 @@ import kotlin.coroutines.CoroutineContext
  * The ViewModel survives configuration changes
  */
 
-class WorldViewModel : ViewModel() {
-    var newsListLiveData: LiveData<List<News>>? = null
+class WorldViewModel: ViewModel() {
     private val _list = MutableLiveData<List<News>>().apply {
 
         }
@@ -38,8 +37,8 @@ class WorldViewModel : ViewModel() {
 
     fun fetchNews(){
         scope.launch {
-           newsListLiveData = repository.getNews()
-//            popularMoviesLiveData.postValue(newsListLiveData)
+          val newsListLiveData= repository.getNews()
+            popularMoviesLiveData.postValue(newsListLiveData)
         }
     }
 
