@@ -18,10 +18,10 @@ object NetworkClient {
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url()
             .newBuilder()
-            .addQueryParameter("api_key", AppConstants.theGuardianApiKey )
-            .addQueryParameter("show-fields","thumbnail")
-            .addQueryParameter("q","world")
-            .addQueryParameter("order-by","relevance")
+//            .addQueryParameter("api_key", AppConstants.theGuardianApiKey )
+//            .addQueryParameter("show-fields","thumbnail")
+//            .addQueryParameter("q","world")
+//            .addQueryParameter("order-by","relevance")
             .build()
 
         val newRequest = chain.request()
@@ -39,8 +39,8 @@ object NetworkClient {
 
 
     fun retrofit(): Retrofit = Retrofit.Builder()
-        .client(theGuardianClient)
         .baseUrl(AppConstants.BASE_URL)
+        .client(theGuardianClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()

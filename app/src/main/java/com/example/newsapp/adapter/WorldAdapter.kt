@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
-import com.example.newsapp.data.News
+import com.example.newsapp.data.NewsResults
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
-    var worldList = listOf<News>()
+    var worldList = listOf<NewsResults>()
         set(value) {
             field=value
             notifyDataSetChanged()
@@ -25,7 +25,7 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        val news: News = worldList[position]
+        val news: NewsResults = worldList[position]
         holder.bind(news)
     }
 
@@ -36,11 +36,11 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var description: TextView = view.findViewById(R.id.description)
         var date: TextView = view.findViewById(R.id.date)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
-        fun bind(news:News) {
+        fun bind(news:NewsResults) {
             sectionName.text = news.sectionName
-            webTitle.text = news.title
-            date.text = news.date
-            newsImage.setImageResource(news.thumbnail)
+            webTitle.text = news.webTitle
+            date.text = news.webPublicationDate
+            newsImage.setImageResource(R.drawable.born_a_crime)
         }
 
     }

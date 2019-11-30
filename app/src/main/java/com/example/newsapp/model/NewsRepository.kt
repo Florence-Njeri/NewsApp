@@ -3,11 +3,9 @@ package com.example.newsapp.model
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.newsapp.constants.AppConstants
-import com.example.newsapp.data.News
 import com.example.newsapp.data.NewsResponse
 import com.example.newsapp.network.NetworkClient
 import com.example.newsapp.network.NetworkClientApi
-import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +20,7 @@ class NewsRepository(private val api: NetworkClientApi) {
         NetworkClient.theGuardianApi.getNewsAsync(AppConstants.theGuardianApiKey,"thumbnail","relevance").enqueue(object :
             Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 

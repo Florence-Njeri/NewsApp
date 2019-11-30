@@ -3,11 +3,9 @@ package com.example.newsapp.ui.world
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.constants.AppConstants
-import com.example.newsapp.data.News
+import com.example.newsapp.data.NewsResults
 import com.example.newsapp.data.NewsResponse
 import com.example.newsapp.model.NewsRepository
-import com.example.newsapp.model.OldNewsRepository
 import com.example.newsapp.network.NetworkClient
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -21,10 +19,10 @@ import kotlin.coroutines.CoroutineContext
  */
 
 class WorldViewModel: ViewModel() {
-    private val _list = MutableLiveData<List<News>>().apply {
+    private val _list = MutableLiveData<List<NewsResults>>().apply {
 
         }
-    val list: LiveData<List<News>> = _list
+    val list: LiveData<List<NewsResults>> = _list
 
     //Fetch data
     private val parentJob = Job()
