@@ -10,16 +10,16 @@ import retrofit2.http.GET
 data class News(
     @Expose
     @SerializedName("sectionName")
-    var sectionName: String,
+    var sectionName: String ="",
     @Expose
     @SerializedName("webPublicationDate")
-    internal var date: String,
+    internal var date: String ="",
     @Expose
     @SerializedName("title")
-    var title: String,
+    var title: String ="",
     @Expose
     @SerializedName("thumbnail")
-    var thumbnail: Int
+    var thumbnail: Int =0
 )
 
 // Data Model for the Response returned from the the guardian Api

@@ -33,7 +33,7 @@ class WorldViewModel: ViewModel() {
     private val repository : NewsRepository =NewsRepository(NetworkClient.theGuardianApi)
 
 
-    val popularMoviesLiveData = MutableLiveData<MutableList<News>>()
+    val popularMoviesLiveData = MutableLiveData<MutableList<News>?>()
 
     fun fetchNews(){
         scope.launch {
