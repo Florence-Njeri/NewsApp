@@ -33,12 +33,12 @@ class WorldFragment : Fragment() {
 
         worldViewModel.fetchNews()
 
-        worldViewModel.popularMoviesLiveData.observe(viewLifecycleOwner, Observer {
+        worldViewModel.newsListLiveData.observe(viewLifecycleOwner, Observer {
 
             //TODO - Your Update UI Logic
             it.let{
                 if (it != null) {
-                    adapter.worldList= it
+                    adapter.worldList= it.results
                 }
                 else{
                     Toast.makeText(activity,"Empty news list !!!",Toast.LENGTH_LONG).show()

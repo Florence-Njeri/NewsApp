@@ -3,7 +3,11 @@ package com.example.newsapp.ui.world
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.newsapp.constants.AppConstants
 import com.example.newsapp.data.News
+import com.example.newsapp.data.NewsResponse
+import com.example.newsapp.model.NewsRepository
+import com.example.newsapp.model.OldNewsRepository
 import com.example.newsapp.network.NetworkClient
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -30,18 +34,19 @@ class WorldViewModel: ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository : NewsRepository =NewsRepository(NetworkClient.theGuardianApi)
+    private val newsRepository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
 
 
-    val popularMoviesLiveData = MutableLiveData<MutableList<News>?>()
+    var newsListLiveData = MutableLiveData<NewsResponse>()
 
     fun fetchNews(){
         scope.launch {
-          val newsListLiveData= repository.getNews()
-            popularMoviesLiveData.postValue(newsListLiveData)
+          newsListLiveData= newsRepository.fetchNews()
+//            popularMoviesLiveData.postValue(newsListLiveData)
         }
     }
 
 
     fun cancelAllRequests() = coroutineContext.cancel()
+
 }
