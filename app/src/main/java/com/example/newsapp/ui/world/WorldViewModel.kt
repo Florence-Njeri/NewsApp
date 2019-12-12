@@ -1,5 +1,6 @@
 package com.example.newsapp.ui.world
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,10 +20,8 @@ import kotlin.coroutines.CoroutineContext
  */
 
 class WorldViewModel: ViewModel() {
-    private val _list = MutableLiveData<List<NewsResults>>().apply {
+// ow
 
-        }
-    val list: LiveData<List<NewsResults>> = _list
 
     //Fetch data
     private val parentJob = Job()
@@ -39,8 +38,9 @@ class WorldViewModel: ViewModel() {
 
     fun fetchNews(){
         scope.launch {
-          newsListLiveData= newsRepository.fetchNews()
-//            popularMoviesLiveData.postValue(newsListLiveData)
+            val newsListLiveData= newsRepository.fetchNews()
+            Log.d("NewsList:iveData",newsListLiveData.toString())
+            newsListLiveData.postValue(newsListLiveData.value)
         }
     }
 

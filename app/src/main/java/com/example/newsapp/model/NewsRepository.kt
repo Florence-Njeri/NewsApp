@@ -17,10 +17,14 @@ class NewsRepository(private val api: NetworkClientApi) {
 
     fun fetchNews(): MutableLiveData<NewsResponse> {
         val data = MutableLiveData<NewsResponse>()
-        NetworkClient.theGuardianApi.getNewsAsync(AppConstants.theGuardianApiKey,"thumbnail","relevance").enqueue(object :
+        NetworkClient.theGuardianApi.getNewsAsync(
+            AppConstants.theGuardianApiKey,
+            "thumbnail",
+            "relevance"
+        ).enqueue(object :
             Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-
+                println(t.message)
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
@@ -31,7 +35,7 @@ class NewsRepository(private val api: NetworkClientApi) {
 //                } else {
 //                    callback.onError();
 //                }
-                }
+            }
         })
 
         return data
