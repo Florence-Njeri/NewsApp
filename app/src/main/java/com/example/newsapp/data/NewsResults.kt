@@ -1,13 +1,9 @@
 package com.example.newsapp.data
 
-import kotlinx.coroutines.Deferred
-import retrofit2.Response
-import retrofit2.http.GET
-
 /**
  * New data class
  */
-data class Fields(
+data class Thumbnail(
 
     val thumbnail: String
 )
@@ -28,5 +24,5 @@ data class NewsResults(
     val webPublicationDate: String,
     val webTitle: String,
     val webUrl: String,
-    val fields: Fields
+    val thumbNail: Thumbnail
 )
