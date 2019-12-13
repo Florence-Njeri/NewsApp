@@ -16,7 +16,7 @@ class NewsRepository(private val api: NetworkClientApi):BaseRepository() {
      * method to fetch news
      * */
 
-    suspend fun fetchNews(): MutableList<NewsResults> {
+    suspend fun fetchNews(): MutableList<NewsResults>? {
 
         //safeApiCall is defined in BaseRepository.kt
         val movieResponse = safeApiCall(
@@ -24,7 +24,7 @@ class NewsRepository(private val api: NetworkClientApi):BaseRepository() {
             errorMessage = "Error Fetching Popular Movies"
         )
 
-        return movieResponse?.results?.toMutableList()!!
+        return movieResponse?.results?.toMutableList()
 //        val data = MutableLiveData<NewsResults>()
 //        NetworkClient.theGuardianApi.getNewsAsync().enqueue(object : Callback<List<NewsResults>> {
 //            override fun onFailure(call: Call<List<NewsResults>>, t: Throwable) {

@@ -33,7 +33,7 @@ class WorldFragment : Fragment() {
 
         worldViewModel.fetchNews()
 
-        worldViewModel.newsListLiveData.observe(viewLifecycleOwner, Observer {
+        worldViewModel.newsLiveData .observe(viewLifecycleOwner, Observer {
 
             //TODO - Your Update UI Logic
             it.let{
