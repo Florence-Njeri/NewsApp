@@ -12,10 +12,10 @@ data class Fields(
     val thumbnail: String
 )
 
-//data class Json4Kotlin_Base(
-//
-//    val response: NewsResponse
-//)
+data class Base(
+
+    val response: NewsResponse
+)
 
 data class NewsResponse(
     val results: List<NewsResults>

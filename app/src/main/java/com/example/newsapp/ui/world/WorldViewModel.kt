@@ -20,8 +20,6 @@ import kotlin.coroutines.CoroutineContext
  */
 
 class WorldViewModel: ViewModel() {
-// ow
-
 
     //Fetch data
     private val parentJob = Job()
@@ -31,16 +29,16 @@ class WorldViewModel: ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val newsRepository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
+    private val repository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
+    val newsLiveData = MutableLiveData<MutableList<NewsResults>>()
 
-
-    var newsListLiveData = MutableLiveData<NewsResults>()
 
     fun fetchNews(){
+        //Done on background thread
         scope.launch {
-            val newsList= newsRepository.fetchNews()
-            Log.d("NewsList:iveData",newsListLiveData.toString())
-            newsListLiveData.postValue(newsList.value)
+            val news= repository.fetchNews()
+            Log.d("NewsList:iveData",news.toString())
+            newsLiveData.postValue(news)
         }
     }
 
