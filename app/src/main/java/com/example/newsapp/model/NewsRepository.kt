@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.newsapp.constants.AppConstants
 import com.example.newsapp.data.NewsResponse
+import com.example.newsapp.data.NewsResults
 import com.example.newsapp.network.NetworkClient
 import com.example.newsapp.network.NetworkClientApi
 import retrofit2.Call
@@ -15,21 +16,21 @@ class NewsRepository(private val api: NetworkClientApi) {
      * method to fetch news
      * */
 
-    fun fetchNews(): MutableLiveData<NewsResponse> {
-        val data = MutableLiveData<NewsResponse>()
+    fun fetchNews(): MutableLiveData<NewsResults> {
+        val data = MutableLiveData<NewsResults>()
         NetworkClient.theGuardianApi.getNewsAsync(
             AppConstants.theGuardianApiKey,
             "thumbnail",
             "relevance"
-        ).enqueue(object :
-            Callback<NewsResponse> {
-            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+        ).enqueue(object : Callback<List<NewsResults>> {
+            override fun onFailure(call: Call<List<NewsResults>>, t: Throwable) {
                 println(t.message)
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
-            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
-                data.value = response.body()
+            override fun onResponse(call: Call<List<NewsResults>>, response: Response<List<NewsResults>>) {
+                println("Sucess : ${response.body()?.size}")
+//                data.value = response.body().size
 //                if (response != null && response.!= null) {
 //                    callback.onSuccess(moviesResponse.getMovies());
 //                } else {
@@ -41,9 +42,11 @@ class NewsRepository(private val api: NetworkClientApi) {
         return data
     }
 
-    private fun throwError(throwable: Throwable?) {
-        Log.e("tag", throwable.toString())
-    }
+
 
 }
+
+
+
+
 

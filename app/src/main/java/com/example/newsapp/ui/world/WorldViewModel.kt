@@ -34,13 +34,13 @@ class WorldViewModel: ViewModel() {
     private val newsRepository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
 
 
-    var newsListLiveData = MutableLiveData<NewsResponse>()
+    var newsListLiveData = MutableLiveData<NewsResults>()
 
     fun fetchNews(){
         scope.launch {
-            val newsListLiveData= newsRepository.fetchNews()
+            val newsList= newsRepository.fetchNews()
             Log.d("NewsList:iveData",newsListLiveData.toString())
-            newsListLiveData.postValue(newsListLiveData.value)
+            newsListLiveData.postValue(newsList.value)
         }
     }
 

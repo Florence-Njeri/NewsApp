@@ -38,7 +38,7 @@ class WorldFragment : Fragment() {
             //TODO - Your Update UI Logic
             it.let{
                 if (it != null) {
-                    adapter.worldList= it.results
+                    adapter.worldList= it
                 }
                 else{
                     Toast.makeText(activity,"Empty news list !!!",Toast.LENGTH_LONG).show()

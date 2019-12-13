@@ -19,10 +19,10 @@ object NetworkClient {
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url()
             .newBuilder()
-//            .addQueryParameter("api_key", AppConstants.theGuardianApiKey )
-//            .addQueryParameter("show-fields","thumbnail")
-//            .addQueryParameter("q","world")
-//            .addQueryParameter("order-by","relevance")
+            .addQueryParameter("api_key", AppConstants.theGuardianApiKey )
+            .addQueryParameter("show-fields","thumbnail")
+            .addQueryParameter("q","world")
+            .addQueryParameter("order-by","relevance")
             .build()
 
         val newRequest = chain.request()
@@ -38,15 +38,15 @@ object NetworkClient {
         .addInterceptor(authInterceptor)
         .build()
 
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+//    private val moshi = Moshi.Builder()
+//        .add(KotlinJsonAdapterFactory())
+//        .build()
 
 
     fun retrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(AppConstants.BASE_URL)
         .client(theGuardianClient)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
