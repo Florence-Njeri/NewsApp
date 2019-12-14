@@ -1,6 +1,7 @@
 package com.example.newsapp.ui.world
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.data.Article
@@ -18,7 +19,10 @@ import kotlin.coroutines.CoroutineContext
  */
 
 class WorldViewModel: ViewModel() {
+    val _news = MutableLiveData<Article>()
 
+    val news:LiveData<Article>
+        get() =_news
     //Fetch data
     private val parentJob = Job()
 
@@ -36,11 +40,16 @@ class WorldViewModel: ViewModel() {
         scope.launch {
             val news= repository.fetchNews()
             Log.d("NewsList:iveData",news.toString())
-            newsLiveData.postValue(news)
+            if (news != null) {
+                if(news.size>0){
+                    newsLiveData.postValue(news)
+
+                }
+            }
         }
     }
 
-
+//To cancel the job request when the view model is destroyed
     fun cancelAllRequests() = coroutineContext.cancel()
 
 }

@@ -32,7 +32,7 @@ object NetworkClient {
     }
 
     //OkhttpClient for building http request url
-    private val theGuardianClient = OkHttpClient().newBuilder()
+    private val okHttpClientClient = OkHttpClient().newBuilder()
         .addInterceptor(authInterceptor)
         .build()
 
@@ -42,7 +42,7 @@ object NetworkClient {
 
 
     fun retrofit(): Retrofit = Retrofit.Builder()
-        .client(theGuardianClient)
+        .client(okHttpClientClient)
         .baseUrl(AppConstants.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())

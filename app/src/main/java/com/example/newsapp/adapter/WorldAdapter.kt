@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
-import com.example.newsapp.data.NewsResults
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     var worldList = listOf<Article>()
@@ -38,10 +38,13 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var date: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
         fun bind(news:Article) {
-            author.text = news.author
+            author.text = "Florence Njeri"
             webTitle.text = news.title
             description.text = news.description
             date.text = news.publishedAt
+
+            //Convert image URI to URL
+            Glide.with(this).load(news.urlToImage).into(newsImage)
             newsImage.setImageResource(R.drawable.born_a_crime)
         }
 
