@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
+import kotlinx.android.synthetic.main.news_item.view.*
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     var worldList = listOf<Article>()
@@ -44,8 +45,13 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
             date.text = news.publishedAt
 
             //Convert image URI to URL
-            Glide.with(this).load(news.urlToImage).into(newsImage)
-            newsImage.setImageResource(R.drawable.born_a_crime)
+            Glide.with(itemView)  //2
+                .load(news.urlToImage) //3
+//                .centerCrop() //4
+//                .placeholder(R.drawable.ic_image_place_holder) //5
+//                .error(R.drawable.ic_broken_image) //6
+//                .fallback(R.drawable.ic_no_image) //7
+                .into(itemView.imageView) //8            newsImage.setImageResource(R.drawable.born_a_crime)
         }
 
     }
