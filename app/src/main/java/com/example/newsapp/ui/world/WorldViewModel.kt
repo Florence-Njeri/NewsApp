@@ -1,11 +1,9 @@
 package com.example.newsapp.ui.world
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.data.NewsResults
-import com.example.newsapp.data.NewsResponse
+import com.example.newsapp.data.Article
 import com.example.newsapp.model.NewsRepository
 import com.example.newsapp.network.NetworkClient
 import kotlinx.coroutines.*
@@ -30,7 +28,7 @@ class WorldViewModel: ViewModel() {
     private val scope = CoroutineScope(coroutineContext)
 
     private val repository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
-    val newsLiveData = MutableLiveData<MutableList<NewsResults>>()
+    val newsLiveData = MutableLiveData<MutableList<Article>>()
 
 
     fun fetchNews(){

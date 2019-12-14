@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
+import com.example.newsapp.data.Article
 import com.example.newsapp.data.NewsResults
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
-    var worldList = listOf<NewsResults>()
+    var worldList = listOf<Article>()
         set(value) {
             field=value
             notifyDataSetChanged()
@@ -25,21 +26,22 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        val news: NewsResults = worldList[position]
+        val news: Article = worldList[position]
         holder.bind(news)
     }
 
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var sectionName: TextView = view.findViewById(R.id.sectionName)
-        var webTitle: TextView = view.findViewById(R.id.webTitle)
+        var author: TextView = view.findViewById(R.id.author)
+        var webTitle: TextView = view.findViewById(R.id.newsTitle)
         var description: TextView = view.findViewById(R.id.description)
-        var date: TextView = view.findViewById(R.id.date)
+        var date: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
-        fun bind(news:NewsResults) {
-            sectionName.text = news.sectionName
-            webTitle.text = news.webTitle
-            date.text = news.webPublicationDate
+        fun bind(news:Article) {
+            author.text = news.author
+            webTitle.text = news.title
+            description.text = news.description
+            date.text = news.publishedAt
             newsImage.setImageResource(R.drawable.born_a_crime)
         }
 

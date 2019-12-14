@@ -19,10 +19,8 @@ object NetworkClient {
     private val authInterceptor = Interceptor { chain ->
         val newUrl = chain.request().url()
             .newBuilder()
-            .addQueryParameter("q","world")
-            .addQueryParameter("show-fields","thumbnail")
-            .addQueryParameter("order-by","relevance")
-            .addQueryParameter("api-key", AppConstants.theGuardianApiKey )
+            .addQueryParameter("q","tech")
+            .addQueryParameter("apiKey", AppConstants.newsApiKey )
             .build()
 
         val newRequest = chain.request()

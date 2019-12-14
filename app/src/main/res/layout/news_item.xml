@@ -16,12 +16,12 @@
 
 
     <TextView
-        android:id="@+id/sectionName"
+        android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="WORLD"
+        android:text="Author"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_big"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/webTitle"
+        android:id="@+id/newsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -43,8 +43,8 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/sectionName"
-        app:layout_constraintTop_toBottomOf="@+id/sectionName" />
+        app:layout_constraintStart_toStartOf="@+id/author"
+        app:layout_constraintTop_toBottomOf="@+id/author" />
 
     <TextView
         android:id="@+id/description"
@@ -57,13 +57,13 @@
         android:textSize="@dimen/text_size_small"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/webTitle"
+        app:layout_constraintEnd_toEndOf="@+id/newsTitle"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/webTitle"
-        app:layout_constraintTop_toBottomOf="@+id/webTitle" />
+        app:layout_constraintStart_toStartOf="@+id/newsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/publishedAt"
         android:layout_width="wrap_content"
         android:layout_height="16dp"
         android:layout_marginTop="8dp"
@@ -84,7 +84,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/webTitle"
+        app:layout_constraintStart_toEndOf="@+id/newsTitle"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </androidx.constraintlayout.widget.ConstraintLayout>

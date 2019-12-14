@@ -1,28 +1,13 @@
 package com.example.newsapp.data
 
-/**
- * New data class
- */
-data class Thumbnail(
 
-    val thumbnail: String
-)
-
-data class Base(
-
-    val response: NewsResponse
-)
-
-data class NewsResponse(
-    val results: List<NewsResults>
-)
+import com.squareup.moshi.Json
 
 data class NewsResults(
-
-    val type: String,
-    val sectionName: String,
-    val webPublicationDate: String,
-    val webTitle: String,
-    val webUrl: String,
-    val thumbNail: Thumbnail
+    @Json(name = "articles")
+    val articles: List<Article>,
+    @Json(name = "status")
+    val status: String,
+    @Json(name = "totalResults")
+    val totalResults: Int
 )
