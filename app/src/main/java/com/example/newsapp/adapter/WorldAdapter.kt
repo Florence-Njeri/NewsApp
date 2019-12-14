@@ -1,15 +1,20 @@
 package com.example.newsapp.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
 import kotlinx.android.synthetic.main.news_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     var worldList = listOf<Article>()
@@ -25,6 +30,7 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
     override fun getItemCount() = worldList.size
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = worldList[position]
@@ -36,13 +42,21 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var author: TextView = view.findViewById(R.id.author)
         var webTitle: TextView = view.findViewById(R.id.newsTitle)
         var description: TextView = view.findViewById(R.id.description)
-        var date: TextView = view.findViewById(R.id.publishedAt)
+        var dateTv: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news:Article) {
+
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            val date = dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
+            val formatter = SimpleDateFormat("yyyy-MM-dd") //If you need time just put specific format for time like 'HH:mm:ss'
+            val dateStr = formatter.format(date)
+
+
             author.text = "Florence Njeri"
             webTitle.text = news.title
             description.text = news.description
-            date.text = news.publishedAt
+            dateTv.text=dateStr
 
             //Convert image URI to URL
             Glide.with(itemView)  //2
