@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.data.Article
+import com.example.newsapp.model.HorizontalNewsRepository
 import com.example.newsapp.model.NewsRepository
 import com.example.newsapp.network.NetworkClient
 import kotlinx.coroutines.*
@@ -32,7 +33,9 @@ class WorldViewModel: ViewModel() {
     private val scope = CoroutineScope(coroutineContext)
 
     private val repository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
+    private val horizontalNewsRepository : HorizontalNewsRepository= HorizontalNewsRepository(NetworkClient.theGuardianApi)
     val newsLiveData = MutableLiveData<MutableList<Article>>()
+    val horizontalNewsLiveData = MutableLiveData<MutableList<Article>>()
 
 
     fun fetchNews(){
@@ -46,6 +49,14 @@ class WorldViewModel: ViewModel() {
 
                 }
             }
+            val horizontalListNews=horizontalNewsRepository.fetchHorizontalNews()
+            if (horizontalListNews != null) {
+                if(horizontalListNews.size>0){
+                    horizontalNewsLiveData.postValue(news)
+
+                }
+            }
+
         }
     }
 
