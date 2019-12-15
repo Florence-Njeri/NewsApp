@@ -12,9 +12,10 @@ class NewsRepository(private val api: NetworkClientApi):BaseRepository() {
 
         //safeApiCall is defined in BaseRepository.kt
         val movieResponse = safeApiCall(
-            call = {api.getNewsAsync().await()},
+            call = {api.getNewsAsync("tech").await()},
             errorMessage = "Error Fetching Popular Movies"
         )
+
 
         return movieResponse?.articles?.toMutableList()
 //        val data = MutableLiveData<NewsResults>()
