@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
+import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.WorldAdapter
 import com.example.newsapp.databinding.FragmentWorldBinding
 
@@ -30,9 +31,12 @@ class WorldFragment : Fragment() {
         var adapter = WorldAdapter()
         binding.worldNewsList.adapter = adapter
 //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
+//Horizontal News List
+        var horizontalAdapter = HorizontalListAdapter()
+        binding.horizontalNewsList.adapter=horizontalAdapter
+
 
         worldViewModel.fetchNews()
-
         worldViewModel.newsLiveData .observe(viewLifecycleOwner, Observer {
 
             //TODO - Your Update UI Logic
@@ -45,7 +49,19 @@ class WorldFragment : Fragment() {
                 }
             }
         })
+        worldViewModel.fetchHorizontalNews()
+        worldViewModel.horizontalNewsLiveData.observe(viewLifecycleOwner, Observer {
 
+            //TODO - Your Update UI Logic
+            it.let{
+                if (it != null) {
+                    horizontalAdapter.horizontalNewsList= it
+                }
+                else{
+                    Toast.makeText(activity,"Empty news list !!!",Toast.LENGTH_LONG).show()
+                }
+            }
+        })
 
         return binding.root
     }

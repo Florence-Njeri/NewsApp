@@ -17,7 +17,7 @@ import java.util.*
 
 
 class HorizontalListAdapter : RecyclerView.Adapter<HorizontalListAdapter.MyViewHolder>() {
-    var worldList = listOf<Article>()
+    var horizontalNewsList = listOf<Article>()
         set(value) {
             field=value
             notifyDataSetChanged()
@@ -28,12 +28,12 @@ class HorizontalListAdapter : RecyclerView.Adapter<HorizontalListAdapter.MyViewH
         return MyViewHolder(view)
     }
 
-    override fun getItemCount() = worldList.size
+    override fun getItemCount() = horizontalNewsList.size
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        val news: Article = worldList[position]
+        val news: Article = horizontalNewsList[position]
         holder.bind(news)
     }
 

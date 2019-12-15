@@ -19,9 +19,10 @@ import java.util.*
 class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     var worldList = listOf<Article>()
         set(value) {
-            field=value
+            field = value
             notifyDataSetChanged()
         }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.news_item, parent, false)
@@ -45,18 +46,20 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
         var dateTv: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(news:Article) {
+        fun bind(news: Article) {
 
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-            val date = dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
-            val formatter = SimpleDateFormat("yyyy-MM-dd") //If you need time just put specific format for time like 'HH:mm:ss'
+            val date =
+                dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
+            val formatter =
+                SimpleDateFormat("yyyy-MM-dd") //If you need time just put specific format for time like 'HH:mm:ss'
             val dateStr = formatter.format(date)
 
 
-            author.text = "Florence Njeri"
+            author.text = news.author
             webTitle.text = news.title
             description.text = news.description
-            dateTv.text=dateStr
+            dateTv.text = dateStr
 
             //Convert image URI to URL
             Glide.with(itemView)  //2

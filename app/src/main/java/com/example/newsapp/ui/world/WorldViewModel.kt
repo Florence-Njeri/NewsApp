@@ -49,13 +49,21 @@ class WorldViewModel: ViewModel() {
 
                 }
             }
+
+
+        }
+    }
+    fun fetchHorizontalNews(){
+        //Done on background thread
+        scope.launch {
             val horizontalListNews=horizontalNewsRepository.fetchHorizontalNews()
             if (horizontalListNews != null) {
                 if(horizontalListNews.size>0){
-                    horizontalNewsLiveData.postValue(news)
+                    horizontalNewsLiveData.postValue(horizontalListNews)
 
                 }
             }
+
 
         }
     }
