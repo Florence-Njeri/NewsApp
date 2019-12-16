@@ -7,13 +7,13 @@ data class Article(
     @Json(name = "author")
     val author: String?,
     @Json(name = "description")
-    val description: String,
+    val description: String?,
     @Json(name = "publishedAt")
-    val publishedAt: String,
+    val publishedAt: String?,
     @Json(name = "title")
-    val title: String,
+    val title: String?,
     @Json(name = "url")
-    val url: String,
+    val url: String?,
     @Json(name = "urlToImage")
-    val urlToImage: String
+    val urlToImage: String?
 )
