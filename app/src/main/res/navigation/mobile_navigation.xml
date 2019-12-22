@@ -17,19 +17,4 @@
         android:label="World"
         tools:layout="@layout/fragment_world" />
 
-    <fragment
-        android:id="@+id/navigation_politics"
-        android:name="com.example.newsapp.ui.politics.PoliticsFragment"
-        android:label="Politics"
-        tools:layout="@layout/fragment_politics" />
-    <fragment
-        android:id="@+id/navigation_science"
-        android:name="com.example.newsapp.ui.science.ScienceFragment"
-        android:label="Science"
-        tools:layout="@layout/fragment_science" />
-    <fragment
-        android:id="@+id/navigation_tech"
-        android:name="com.example.newsapp.ui.tech.TechFragment"
-        android:label="Tech"
-        tools:layout="@layout/fragment_tech" />
 </navigation>
