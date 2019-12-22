@@ -6,6 +6,9 @@
     <data>
 
     </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,4 +41,6 @@
             tools:itemCount="6"
             tools:listitem="@layout/news_item" />
     </LinearLayout>
+</ScrollView>
+
 </layout>

@@ -42,7 +42,6 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var author: TextView = view.findViewById(R.id.author)
         var webTitle: TextView = view.findViewById(R.id.newsTitle)
-        var description: TextView = view.findViewById(R.id.description)
         var dateTv: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.imageView)
         @RequiresApi(Build.VERSION_CODES.O)
@@ -58,7 +57,6 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
             author.text = news.author
             webTitle.text = news.title
-            description.text = news.description
             dateTv.text = dateStr
 
             //Convert image URI to URL
