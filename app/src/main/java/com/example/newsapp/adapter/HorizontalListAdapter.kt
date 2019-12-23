@@ -40,7 +40,6 @@ class HorizontalListAdapter : RecyclerView.Adapter<HorizontalListAdapter.MyViewH
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var webTitle: TextView = view.findViewById(R.id.newsTitle)
-        var description: TextView = view.findViewById(R.id.newsDescription)
         var dateTv: TextView = view.findViewById(R.id.publishedAt)
         var newsImage: ImageView = view.findViewById(R.id.newsImage)
         @RequiresApi(Build.VERSION_CODES.O)
@@ -52,7 +51,6 @@ class HorizontalListAdapter : RecyclerView.Adapter<HorizontalListAdapter.MyViewH
             val dateStr = formatter.format(date)
 
             webTitle.text = news.title
-            description.text = news.description
             dateTv.text=dateStr
 
             //Convert image URI to URL

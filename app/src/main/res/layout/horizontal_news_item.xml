@@ -39,15 +39,6 @@
             android:textSize="@dimen/text_size_big" />
 
         <TextView
-            android:id="@+id/newsDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Description"
-            android:textSize="@dimen/text_size_medium" />
-
-        <TextView
             android:id="@+id/publishedAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
