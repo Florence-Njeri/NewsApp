@@ -7,16 +7,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.data.Article
+import com.example.newsapp.databinding.NewsItemBinding
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
+class WorldAdapter : ListAdapter<Article, WorldAdapter.MyViewHolder>(DiffCallback){
     var worldList = listOf<Article>()
         set(value) {
             field = value
@@ -25,8 +28,7 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.news_item, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder(NewsItemBinding.inflate(layoutInflater))
     }
 
     override fun getItemCount() = worldList.size
@@ -35,15 +37,13 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = worldList[position]
+//        val news=getItem(position)
         holder.bind(news)
     }
 
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var author: TextView = view.findViewById(R.id.author)
-        var webTitle: TextView = view.findViewById(R.id.newsTitle)
-        var dateTv: TextView = view.findViewById(R.id.publishedAt)
-        var newsImage: ImageView = view.findViewById(R.id.imageView)
+    class MyViewHolder(private var binding: NewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news: Article) {
 
@@ -55,9 +55,9 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
             val dateStr = formatter.format(date)
 
 
-            author.text = news.author
-            webTitle.text = news.title
-            dateTv.text = dateStr
+            binding.author.text = news.author
+            binding.newsTitle.text = news.title
+            binding.publishedAt.text = dateStr
 
             //Convert image URI to URL
             Glide.with(itemView)  //2
@@ -67,7 +67,17 @@ class WorldAdapter : RecyclerView.Adapter<WorldAdapter.MyViewHolder>() {
 //                .error(R.drawable.ic_broken_image) //6
 //                .fallback(R.drawable.ic_no_image) //7
                 .into(itemView.imageView) //8            newsImage.setImageResource(R.drawable.born_a_crime)
+            binding.executePendingBindings()
         }
 
+    }
+    companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem.title == newItem.title
+        }
     }
 }

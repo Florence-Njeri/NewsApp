@@ -27,7 +27,7 @@ class WorldFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         worldViewModel =ViewModelProviders.of(this).get(WorldViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_world, container, false)
+        binding =FragmentWorldBinding.inflate(inflater)
         var adapter = WorldAdapter()
         binding.worldNewsList.adapter = adapter
 //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
