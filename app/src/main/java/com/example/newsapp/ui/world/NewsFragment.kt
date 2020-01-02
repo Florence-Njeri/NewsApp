@@ -5,29 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.WorldAdapter
-import com.example.newsapp.databinding.FragmentWorldBinding
+import com.example.newsapp.databinding.FragmentNewsBinding
+class NewsFragment : Fragment() {
 
-class WorldFragment : Fragment() {
-
-    private lateinit var worldViewModel: WorldViewModel
-    private lateinit var binding: FragmentWorldBinding
+    private lateinit var worldViewModel: NewsViewModel
+    private lateinit var binding: FragmentNewsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        worldViewModel =ViewModelProviders.of(this).get(WorldViewModel::class.java)
-        binding =FragmentWorldBinding.inflate(inflater)
+        worldViewModel =ViewModelProviders.of(this).get(NewsViewModel::class.java)
+        binding =FragmentNewsBinding.inflate(inflater)
         var adapter = WorldAdapter()
         binding.worldNewsList.adapter = adapter
 //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)

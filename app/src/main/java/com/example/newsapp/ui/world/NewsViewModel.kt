@@ -19,7 +19,7 @@ import kotlin.coroutines.CoroutineContext
  * The ViewModel survives configuration changes
  */
 
-class WorldViewModel: ViewModel() {
+class NewsViewModel: ViewModel() {
     val _news = MutableLiveData<Article>()
 
     val news:LiveData<Article>

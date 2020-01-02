@@ -6,15 +6,9 @@
     app:startDestination="@+id/navigation_world">
 
     <fragment
-        android:id="@+id/navigation_business"
-        android:name="com.example.newsapp.ui.business.BusinessFragment"
-        android:label="Business"
-        tools:layout="@layout/fragment_business" />
-
-    <fragment
         android:id="@+id/navigation_world"
-        android:name="com.example.newsapp.ui.world.WorldFragment"
+        android:name="com.example.newsapp.ui.world.NewsFragment"
         android:label="World"
-        tools:layout="@layout/fragment_world" />
+        tools:layout="@layout/fragment_news" />
 
 </navigation>
