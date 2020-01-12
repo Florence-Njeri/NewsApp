@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="newsViewModel"
+    type="com.example.newsapp.ui.news.NewsViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"

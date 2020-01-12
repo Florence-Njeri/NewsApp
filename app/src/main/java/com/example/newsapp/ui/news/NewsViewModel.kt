@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.world
+package com.example.newsapp.ui.news
 
 import android.util.Log
 import androidx.lifecycle.LiveData

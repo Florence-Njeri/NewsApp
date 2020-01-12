@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.world
+package com.example.newsapp.ui.news
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import com.example.newsapp.adapter.WorldAdapter
 import com.example.newsapp.databinding.FragmentNewsBinding
 class NewsFragment : Fragment() {
 
-    private lateinit var worldViewModel: NewsViewModel
+    private lateinit var viewModel: NewsViewModel
     private lateinit var binding: FragmentNewsBinding
 
     override fun onCreateView(
@@ -21,18 +21,22 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        worldViewModel =ViewModelProviders.of(this).get(NewsViewModel::class.java)
+        viewModel =ViewModelProviders.of(this).get(NewsViewModel::class.java)
+
         binding =FragmentNewsBinding.inflate(inflater)
+
+        binding.newsViewModel=viewModel
+        binding.lifecycleOwner=this
         var adapter = WorldAdapter()
         binding.worldNewsList.adapter = adapter
-//        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
-//Horizontal News List
+        //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
+        //Horizontal News List
         var horizontalAdapter = HorizontalListAdapter()
         binding.horizontalNewsList.adapter=horizontalAdapter
 
 
-        worldViewModel.fetchNews()
-        worldViewModel.newsLiveData .observe(viewLifecycleOwner, Observer {
+        viewModel.fetchNews()
+        viewModel.newsLiveData .observe(viewLifecycleOwner, Observer {
 
             //TODO - Your Update UI Logic
             it.let{
@@ -44,8 +48,8 @@ class NewsFragment : Fragment() {
                 }
             }
         })
-        worldViewModel.fetchHorizontalNews()
-        worldViewModel.horizontalNewsLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.fetchHorizontalNews()
+        viewModel.horizontalNewsLiveData.observe(viewLifecycleOwner, Observer {
 
             //TODO - Your Update UI Logic
             it.let{

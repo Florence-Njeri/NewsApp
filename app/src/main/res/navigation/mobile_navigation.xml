@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_world"
-        android:name="com.example.newsapp.ui.world.NewsFragment"
+        android:name="com.example.newsapp.ui.news.NewsFragment"
         android:label="World"
         tools:layout="@layout/fragment_news" />
 

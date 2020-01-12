@@ -7,7 +7,7 @@
 
         <variable
             name="newsItem"
-            type="com.example.newsapp.ui.world.NewsViewModel" />
+            type="com.example.newsapp.ui.news.NewsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
