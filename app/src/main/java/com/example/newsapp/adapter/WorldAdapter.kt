@@ -20,24 +20,16 @@ import java.util.*
 
 
 class WorldAdapter : ListAdapter<Article, WorldAdapter.MyViewHolder>(DiffCallback){
-    var worldList = listOf<Article>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
         return MyViewHolder(NewsItemBinding.inflate(layoutInflater))
     }
 
-    override fun getItemCount() = worldList.size
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
-        val news: Article = worldList[position]
-//        val news=getItem(position)
+        val news: Article = getItem(position)
         holder.bind(news)
     }
 

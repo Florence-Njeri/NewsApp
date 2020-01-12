@@ -41,7 +41,8 @@ class NewsFragment : Fragment() {
             //TODO - Your Update UI Logic
             it.let{
                 if (it != null) {
-                    adapter.worldList= it
+/**                   Use submitList() to keep the list updated**/
+                    adapter.submitList(it)
                 }
                 else{
                     Toast.makeText(activity,"Empty news list !!!",Toast.LENGTH_LONG).show()
@@ -54,7 +55,7 @@ class NewsFragment : Fragment() {
             //TODO - Your Update UI Logic
             it.let{
                 if (it != null) {
-                    horizontalAdapter.horizontalNewsList= it
+                    horizontalAdapter.submitList(it)
                 }
                 else{
                     Toast.makeText(activity,"Empty news list !!!",Toast.LENGTH_LONG).show()
