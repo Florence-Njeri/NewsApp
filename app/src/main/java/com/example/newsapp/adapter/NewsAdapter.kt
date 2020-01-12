@@ -2,10 +2,7 @@ package com.example.newsapp.adapter
 
 import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -19,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class WorldAdapter : ListAdapter<Article, WorldAdapter.MyViewHolder>(DiffCallback){
+class NewsAdapter : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
@@ -38,19 +35,7 @@ class WorldAdapter : ListAdapter<Article, WorldAdapter.MyViewHolder>(DiffCallbac
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news: Article) {
-
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-            val date =
-                dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
-            val formatter =
-                SimpleDateFormat("yyyy-MM-dd") //If you need time just put specific format for time like 'HH:mm:ss'
-            val dateStr = formatter.format(date)
-
-
-            binding.author.text = news.author
-            binding.newsTitle.text = news.title
-            binding.publishedAt.text = dateStr
-
+            binding.newsItem = news
             //Convert image URI to URL
             Glide.with(itemView)  //2
                 .load(news.urlToImage) //3

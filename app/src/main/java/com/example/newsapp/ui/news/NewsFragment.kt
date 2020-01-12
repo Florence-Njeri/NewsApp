@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.newsapp.adapter.HorizontalListAdapter
-import com.example.newsapp.adapter.WorldAdapter
+import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.databinding.FragmentNewsBinding
 class NewsFragment : Fragment() {
 
@@ -27,7 +27,7 @@ class NewsFragment : Fragment() {
 
         binding.newsViewModel=viewModel
         binding.lifecycleOwner=this
-        var adapter = WorldAdapter()
+        var adapter = NewsAdapter()
         binding.worldNewsList.adapter = adapter
         //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
         //Horizontal News List
