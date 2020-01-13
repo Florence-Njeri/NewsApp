@@ -9,6 +9,18 @@
         android:id="@+id/navigation_world"
         android:name="com.example.newsapp.ui.news.NewsFragment"
         android:label="World"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_navigation_world_to_newsDetails"
+            app:destination="@id/newsDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetails"
+        android:name="com.example.newsapp.ui.newsdetails.NewsDetails"
+        android:label="NewsDetails" >
+        <action
+            android:id="@+id/action_newsDetails_to_navigation_world"
+            app:destination="@id/navigation_world" />
+    </fragment>
 
 </navigation>

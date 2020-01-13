@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.newsapp.R
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.NewsItemBinding
 import kotlinx.android.synthetic.main.news_item.view.*
@@ -16,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NewsAdapter : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback){
+class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
@@ -27,14 +26,20 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = getItem(position)
-        holder.bind(news)
+        holder.bind(news,clickListener)
     }
 
 
     class MyViewHolder(private var binding: NewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(news: Article) {
+        fun bind(
+            news: Article,
+            clickListener: NewsListener
+        ) {
+
+            binding.newsItem=news
+            binding.clickListener=clickListener
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val date =
                 dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
@@ -68,4 +73,7 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback)
             return oldItem.title == newItem.title
         }
     }
+}
+class NewsListener(val clickListener:(title:String)-> Unit){
+    fun onClick(news:Article)=clickListener(news.title.toString())
 }

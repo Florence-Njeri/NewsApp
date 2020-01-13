@@ -8,11 +8,15 @@
         <variable
             name="newsItem"
             type="com.example.newsapp.data.Article" />
+        <variable
+            name="clickListener"
+            type="com.example.newsapp.adapter.NewsListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()-> clickListener.onClick(newsItem)}">
 
         <TextView
             android:id="@+id/author"
@@ -24,7 +28,7 @@
             android:alpha="0.6"
             android:text="Author"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/textSizeSmall"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -39,7 +43,7 @@
             android:layout_marginLeft="8dp"
             android:text="Robbie Williams: The Christmas Present review – perfect for regifting."
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="@dimen/textSizeBody"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +60,7 @@
             android:layout_marginRight="16dp"
             android:text="22nd November, 2019"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/textSizeSmall"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/author"
             app:layout_constraintEnd_toEndOf="parent"
