@@ -29,7 +29,7 @@
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/newsTitle"
-            app:author="@{newsItem}"/>
+            />
 
         <TextView
             android:id="@+id/newsTitle"
@@ -46,7 +46,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:title="@{newsItem}"/>
+            />
 
         <TextView
             android:id="@+id/publishedAt"
@@ -63,7 +63,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/author"
             app:layout_constraintTop_toTopOf="@+id/author"
-            app:publishedAt="@{newsItem}"/>
+            />
 
         <ImageView
             android:id="@+id/imageView"

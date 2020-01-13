@@ -35,7 +35,18 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.MyViewHolder>(DiffCallback)
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(news: Article) {
-            binding.newsItem = news
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+            val date =
+                dateFormat.parse(news.publishedAt)//You will get date object relative to server/client timezone wherever it is parsed
+            val formatter =
+                SimpleDateFormat("yyyy-MM-dd") //If you need time just put specific format for time like 'HH:mm:ss'
+            val dateStr = formatter.format(date)
+
+
+            binding.author.text = news.author
+            binding.newsTitle.text = news.title
+            binding.publishedAt.text = dateStr
+
             //Convert image URI to URL
             Glide.with(itemView)  //2
                 .load(news.urlToImage) //3
