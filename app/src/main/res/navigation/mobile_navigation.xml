@@ -18,11 +18,21 @@
     <fragment
         android:id="@+id/newsDetails"
         android:name="com.example.newsapp.ui.newsdetails.NewsDetails"
-        android:label="NewsDetails"
+        android:label="News Details"
         tools:layout="@layout/news_details_fragment">
         <action
             android:id="@+id/action_newsDetails_to_navigation_world"
-            app:destination="@id/navigation_news" />
+            app:destination="@id/navigation_news"
+            app:popUpTo="@+id/navigation_news"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="newsUrl"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

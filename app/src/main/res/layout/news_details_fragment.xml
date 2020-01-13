@@ -7,55 +7,23 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
         tools:context=".ui.newsdetails.NewsDetails">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <ImageView
+            android:id="@+id/newsImage"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay">
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
-
-                <ImageView
-                    android:id="@+id/newsImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    android:src="@drawable/born_a_crime" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/scrim_gradient"/>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:layout_collapseMode="parallax"
+            android:src="@drawable/born_a_crime" />
 
         <TextView
-            android:id="@+id/overviewText"
+            android:id="@+id/description"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,5 +32,5 @@
             android:textColor="@color/secondaryText"
             android:textSize="@dimen/textSizeBody"
             />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 </layout>

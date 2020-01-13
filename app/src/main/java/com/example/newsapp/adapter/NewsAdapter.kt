@@ -74,6 +74,7 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAda
         }
     }
 }
-class NewsListener(val clickListener:(title:String)-> Unit){
-    fun onClick(news:Article)=clickListener(news.title.toString())
+class NewsListener(val clickListener:(news:Article)-> Unit){
+    fun onClick(news:Article)=clickListener(news)
+
 }

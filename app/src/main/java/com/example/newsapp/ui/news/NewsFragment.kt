@@ -13,6 +13,7 @@ import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.adapter.NewsListener
+import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {
@@ -31,8 +32,9 @@ class NewsFragment : Fragment() {
 
         binding.newsViewModel=viewModel
         binding.lifecycleOwner=this
-        var adapter = NewsAdapter(NewsListener { title ->
-            viewModel.onNewsItemClicked(title)
+        var adapter = NewsAdapter(NewsListener { news: Article->
+                viewModel.onNewsItemClicked(news)
+
         })
         binding.worldNewsList.adapter = adapter
         //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
@@ -70,8 +72,9 @@ class NewsFragment : Fragment() {
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, Observer {news->
             news.let {
                 if (findNavController().currentDestination?.id == R.id.navigation_news){
-                this.findNavController().navigate(R.id.action_navigation_news_to_newsDetails)
-                viewModel.onNewsItemClicked(news)}
+                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.description,news.urlToImage))
+                viewModel.onNewsItemClicked(news)
+                }
             }
 
         })

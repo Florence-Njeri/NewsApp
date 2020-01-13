@@ -19,11 +19,11 @@ import kotlin.coroutines.CoroutineContext
  * The ViewModel survives configuration changes
  */
 
-class NewsViewModel: ViewModel() {
+class NewsViewModel : ViewModel() {
     val _news = MutableLiveData<Article>()
 
-    val news:LiveData<Article>
-        get() =_news
+    val news: LiveData<Article>
+        get() = _news
     //Fetch data
     private val parentJob = Job()
 
@@ -33,23 +33,25 @@ class NewsViewModel: ViewModel() {
     private val scope = CoroutineScope(coroutineContext)
 
     //LiveData for navigation
-    private val _navigateToNewsDetails=MutableLiveData<String>()
-    val navigateToNewsDetails:LiveData<String>
-        get()=_navigateToNewsDetails
+    private val _navigateToNewsDetails = MutableLiveData<Article>()
+    val navigateToNewsDetails: LiveData<Article>
+        get() = _navigateToNewsDetails
 
-    private val repository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
-    private val horizontalNewsRepository : HorizontalNewsRepository= HorizontalNewsRepository(NetworkClient.theGuardianApi)
+
+    private val repository: NewsRepository = NewsRepository(NetworkClient.theGuardianApi)
+    private val horizontalNewsRepository: HorizontalNewsRepository =
+        HorizontalNewsRepository(NetworkClient.theGuardianApi)
     val newsLiveData = MutableLiveData<MutableList<Article>>()
     val horizontalNewsLiveData = MutableLiveData<MutableList<Article>>()
 
 
-    fun fetchNews(){
+    fun fetchNews() {
         //Done on background thread
         scope.launch {
-            val news= repository.fetchNews()
-            Log.d("NewsList:iveData",news.toString())
+            val news = repository.fetchNews()
+            Log.d("NewsList:iveData", news.toString())
             if (news != null) {
-                if(news.size>0){
+                if (news.size > 0) {
                     newsLiveData.postValue(news)
 
                 }
@@ -58,12 +60,13 @@ class NewsViewModel: ViewModel() {
 
         }
     }
-    fun fetchHorizontalNews(){
+
+    fun fetchHorizontalNews() {
         //Done on background thread
         scope.launch {
-            val horizontalListNews=horizontalNewsRepository.fetchHorizontalNews()
+            val horizontalListNews = horizontalNewsRepository.fetchHorizontalNews()
             if (horizontalListNews != null) {
-                if(horizontalListNews.size>0){
+                if (horizontalListNews.size > 0) {
                     horizontalNewsLiveData.postValue(horizontalListNews)
 
                 }
@@ -72,13 +75,14 @@ class NewsViewModel: ViewModel() {
 
         }
     }
+
     /** Handle RecyclerViewClicks**/
-    fun onNewsItemClicked(title:String){
-        _navigateToNewsDetails.value=title
+    fun onNewsItemClicked(news:Article) {
+        _navigateToNewsDetails.value = news
 
     }
 
-//To cancel the job request when the view model is destroyed
+    //To cancel the job request when the view model is destroyed
     fun cancelAllRequests() = coroutineContext.cancel()
 
 }
