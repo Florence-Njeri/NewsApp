@@ -32,6 +32,11 @@ class NewsViewModel: ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
+    //LiveData for navigation
+    private val _navigateToNewsDetails=MutableLiveData<String>()
+    val navigateToNewsDetails:LiveData<String>
+        get()=_navigateToNewsDetails
+
     private val repository : NewsRepository= NewsRepository(NetworkClient.theGuardianApi)
     private val horizontalNewsRepository : HorizontalNewsRepository= HorizontalNewsRepository(NetworkClient.theGuardianApi)
     val newsLiveData = MutableLiveData<MutableList<Article>>()
@@ -66,6 +71,11 @@ class NewsViewModel: ViewModel() {
 
 
         }
+    }
+    /** Handle RecyclerViewClicks**/
+    fun onNewsItemClicked(title:String){
+        _navigateToNewsDetails.value=title
+
     }
 
 //To cancel the job request when the view model is destroyed

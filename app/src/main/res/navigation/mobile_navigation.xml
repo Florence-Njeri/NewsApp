@@ -3,24 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_world">
+    app:startDestination="@+id/navigation_news">
 
     <fragment
-        android:id="@+id/navigation_world"
+        android:id="@+id/navigation_news"
         android:name="com.example.newsapp.ui.news.NewsFragment"
-        android:label="World"
-        tools:layout="@layout/fragment_news" >
+        android:label="News"
+        tools:layout="@layout/fragment_news">
+
         <action
-            android:id="@+id/action_navigation_world_to_newsDetails"
+            android:id="@+id/action_navigation_news_to_newsDetails"
             app:destination="@id/newsDetails" />
     </fragment>
     <fragment
         android:id="@+id/newsDetails"
         android:name="com.example.newsapp.ui.newsdetails.NewsDetails"
-        android:label="NewsDetails" >
+        android:label="NewsDetails"
+        tools:layout="@layout/news_details_fragment">
         <action
             android:id="@+id/action_newsDetails_to_navigation_world"
-            app:destination="@id/navigation_world" />
+            app:destination="@id/navigation_news" />
     </fragment>
 
 </navigation>

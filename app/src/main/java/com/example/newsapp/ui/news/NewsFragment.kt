@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.adapter.NewsListener
@@ -29,7 +32,7 @@ class NewsFragment : Fragment() {
         binding.newsViewModel=viewModel
         binding.lifecycleOwner=this
         var adapter = NewsAdapter(NewsListener { title ->
-            Toast.makeText(context,title,Toast.LENGTH_SHORT).show()
+            viewModel.onNewsItemClicked(title)
         })
         binding.worldNewsList.adapter = adapter
         //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
@@ -64,6 +67,14 @@ class NewsFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, Observer {news->
+            news.let {
+                if (findNavController().currentDestination?.id == R.id.navigation_news){
+                this.findNavController().navigate(R.id.action_navigation_news_to_newsDetails)
+                viewModel.onNewsItemClicked(news)}
+            }
+
+        })
         return binding.root
     }
 }
