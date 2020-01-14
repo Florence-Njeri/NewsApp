@@ -72,7 +72,7 @@ class NewsFragment : Fragment() {
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, Observer {news->
             news.let {
                 if (findNavController().currentDestination?.id == R.id.navigation_news){
-                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.description,news.urlToImage))
+                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.urlToImage,news.author,news.title,news.content))
                 viewModel.onNewsItemClicked(news)
                 }
             }

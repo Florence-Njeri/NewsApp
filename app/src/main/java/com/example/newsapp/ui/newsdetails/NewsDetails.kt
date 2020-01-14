@@ -10,6 +10,9 @@ import com.bumptech.glide.Glide
 
 import com.example.newsapp.R
 import com.example.newsapp.databinding.NewsDetailsFragmentBinding
+import kotlinx.android.synthetic.main.horizontal_news_item.view.*
+import kotlinx.android.synthetic.main.movie_details_content.view.*
+import kotlinx.android.synthetic.main.news_details_fragment.view.*
 import kotlinx.android.synthetic.main.news_item.view.*
 
 class NewsDetails : Fragment() {
@@ -29,14 +32,12 @@ class NewsDetails : Fragment() {
         // TODO: Use the ViewModel
 
         var args= arguments?.let { NewsDetailsArgs.fromBundle(it) }
-        binding.description.text=args?.description
+        binding.layout.title.text=args?.title
+        binding.layout.authors.text=args?.author
+        binding.layout.content.text=args?.content
         Glide.with(this)  //2
             .load(args?.newsUrl) //3
-//                .centerCrop() //4
-//                .placeholder(R.drawable.ic_image_place_holder) //5
-//                .error(R.drawable.ic_broken_image) //6
-//                .fallback(R.drawable.ic_no_image) //7
-            .into(binding.newsImage) //8
+            .into(binding.newsImage) //4
         return binding.root
     }
 
