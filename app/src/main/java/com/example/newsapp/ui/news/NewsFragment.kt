@@ -26,9 +26,11 @@ class NewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         viewModel =ViewModelProviders.of(this).get(NewsViewModel::class.java)
 
         binding =FragmentNewsBinding.inflate(inflater)
+        binding.toolbar.title= "News"
 
         binding.newsViewModel=viewModel
         binding.lifecycleOwner=this
@@ -37,8 +39,7 @@ class NewsFragment : Fragment() {
 
         })
         binding.worldNewsList.adapter = adapter
-        //        binding.worldNewsList.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL ,false)
-        //Horizontal News List
+
         var horizontalAdapter = HorizontalListAdapter()
         binding.horizontalNewsList.adapter=horizontalAdapter
 
@@ -72,7 +73,7 @@ class NewsFragment : Fragment() {
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, Observer {news->
             news.let {
                 if (findNavController().currentDestination?.id == R.id.navigation_news){
-                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.urlToImage,news.author,news.title,news.content))
+                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.urlToImage,news.author,news.title,news.description,news.url))
                 viewModel.onNewsItemClicked(news)
                 }
             }

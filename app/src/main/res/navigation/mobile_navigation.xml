@@ -38,7 +38,11 @@
             app:argType="string"
             app:nullable="true" />
         <argument
-            android:name="content"
+            android:name="description"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="url"
             app:argType="string"
             app:nullable="true" />
     </fragment>

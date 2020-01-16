@@ -42,16 +42,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/overview"
-        android:textColor="@color/primaryText"
-        android:textSize="@dimen/textSizeBody"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,5 +51,19 @@
         android:textColor="@color/primaryText"
         android:textSize="@dimen/textSizeBody"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <Button
+        android:id="@+id/read_more"
+        android:layout_width="88dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:text="Read more"
+        android:background="@drawable/button_background_read_more"
+        android:layout_gravity="end"
+        android:gravity="center|center_vertical"
+        android:textAllCaps="false"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        android:layout_marginRight="16dp" />
 </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,22 +1,22 @@
 package com.example.newsapp.ui.newsdetails
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-
-import com.example.newsapp.R
 import com.example.newsapp.databinding.NewsDetailsFragmentBinding
-import kotlinx.android.synthetic.main.horizontal_news_item.view.*
 import kotlinx.android.synthetic.main.movie_details_content.view.*
-import kotlinx.android.synthetic.main.news_details_fragment.view.*
-import kotlinx.android.synthetic.main.news_item.view.*
+
 
 class NewsDetails : Fragment() {
     private lateinit var binding: NewsDetailsFragmentBinding
+
     companion object {
         fun newInstance() = NewsDetails()
     }
@@ -27,20 +27,35 @@ class NewsDetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =NewsDetailsFragmentBinding.inflate(inflater)
+        binding = NewsDetailsFragmentBinding.inflate(inflater)
         viewModel = ViewModelProviders.of(this).get(NewsDetailsViewModel::class.java)
         // TODO: Use the ViewModel
+        activity?.title = "News"
 
-        var args= arguments?.let { NewsDetailsArgs.fromBundle(it) }
-        binding.layout.title.text=args?.title
-        binding.layout.authors.text=args?.author
-        binding.layout.content.text=args?.content
+//        Actionbar
+//        binding.collapsingToolbar.title= "News Details"
+        binding.toolbar.apply {
+            setNavigationOnClickListener { findNavController().navigateUp() }
+            setTitle("News Details")
+
+        }
+
+        var args = arguments?.let { NewsDetailsArgs.fromBundle(it) }
+        binding.layout.title.text = args?.title
+        binding.layout.authors.text = args?.author
+        binding.layout.content.text = args?.description
         Glide.with(this)  //2
             .load(args?.newsUrl) //3
             .into(binding.newsImage) //4
+
+        //Read more
+        binding.layout.read_more.setOnClickListener {
+            val uri = Uri.parse(args?.url) // missing 'http://' will cause a crash
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
         return binding.root
     }
-
 
 
 }

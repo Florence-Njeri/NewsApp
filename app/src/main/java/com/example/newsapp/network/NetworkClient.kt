@@ -21,6 +21,7 @@ object NetworkClient {
             .newBuilder()
             .addQueryParameter("q","tech")
             .addQueryParameter("apiKey", AppConstants.newsApiKey )
+            .addQueryParameter("language", "en" )
             .build()
 
         val newRequest = chain.request()
