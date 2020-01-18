@@ -3,19 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-<variable
-    name="horizontalNewsList"
-    type="com.example.newsapp.ui.news.NewsViewModel" />
+
+        <variable
+            name="horizontalNewsList"
+            type="com.example.newsapp.ui.news.NewsViewModel" />
+
+
+<!--            <variable-->
+<!--                name="newsItem"-->
+<!--                type="com.example.newsapp.data.Article" />-->
+
+            <variable
+                name="clickListener"
+                type="com.example.newsapp.adapter.HorizontalListAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp">
+        app:cardCornerRadius="4dp">
 
 
         <LinearLayout

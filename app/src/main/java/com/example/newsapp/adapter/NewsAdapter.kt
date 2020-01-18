@@ -1,5 +1,4 @@
 package com.example.newsapp.adapter
-
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -38,7 +37,7 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAda
             clickListener: NewsListener
         ) {
 
-            binding.newsItem=news
+//            binding.newsItem=news
             binding.clickListener=clickListener
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val date =

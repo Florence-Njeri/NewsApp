@@ -30,30 +30,33 @@ class NewsDetails : Fragment() {
         binding = NewsDetailsFragmentBinding.inflate(inflater)
         viewModel = ViewModelProviders.of(this).get(NewsDetailsViewModel::class.java)
         // TODO: Use the ViewModel
-        activity?.title = "News"
-
+        val application = requireNotNull(activity).application
 //        Actionbar
 //        binding.collapsingToolbar.title= "News Details"
         binding.toolbar.apply {
             setNavigationOnClickListener { findNavController().navigateUp() }
             setTitle("News Details")
 
+
         }
 
-        var args = arguments?.let { NewsDetailsArgs.fromBundle(it) }
-        binding.layout.title.text = args?.title
-        binding.layout.authors.text = args?.author
-        binding.layout.content.text = args?.description
-        Glide.with(this)  //2
-            .load(args?.newsUrl) //3
-            .into(binding.newsImage) //4
+        var newsProperty = arguments?.let { NewsDetailsArgs.fromBundle(arguments!!).selectedProperty }
 
-        //Read more
-        binding.layout.read_more.setOnClickListener {
-            val uri = Uri.parse(args?.url) // missing 'http://' will cause a crash
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
+        val viewModelFactory = newsProperty?.let { DetailsViewModelFactory(it,application) }
+        binding.viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsDetailsViewModel::class.java)
+//        binding.layout.title.text = args?.title
+//        binding.layout.authors.text = args?.author
+//        binding.layout.description.text = args?.description
+//        Glide.with(this)  //2
+//            .load(args?.newsUrl) //3
+//            .into(binding.newsImage) //4
+//
+//        //Read more
+//        binding.layout.readMore.setOnClickListener {
+//            val uri = Uri.parse(args?.url) // missing 'http://' will cause a crash
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
+//        }
         return binding.root
     }
 

@@ -82,6 +82,11 @@ class NewsViewModel : ViewModel() {
 
     }
 
+    //To clear LiveData to prevent it from being triggered again when we return from the DetailsView
+    fun displayDetailsComplete(){
+        _navigateToNewsDetails.value = null
+
+    }
     //To cancel the job request when the view model is destroyed
     fun cancelAllRequests() = coroutineContext.cancel()
 

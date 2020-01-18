@@ -11,16 +11,12 @@ import com.bumptech.glide.Glide
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.HorizontalNewsItemBinding
 import com.example.newsapp.databinding.NewsItemBinding
+import com.example.newsapp.generated.callback.OnClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class HorizontalListAdapter :ListAdapter<Article, HorizontalListAdapter.MyViewHolder>(DiffCallBack) {
-//    var horizontalNewsList = listOf<Article>()
-//        set(value) {
-//            field = value
-//            notifyDataSetChanged()
-//        }
+class HorizontalListAdapter(val onClickListener:OnClickListener) :ListAdapter<Article, HorizontalListAdapter.MyViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
@@ -33,14 +29,17 @@ class HorizontalListAdapter :ListAdapter<Article, HorizontalListAdapter.MyViewHo
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = getItem(position)
-        holder.bind(news)
+        holder.bind(news,onClickListener)
+
     }
 
 
     class MyViewHolder(private var binding: HorizontalNewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(news: Article) {
+        fun bind(news: Article,clickListener:OnClickListener) {
+//            binding.newsItem=news
+            binding.clickListener=clickListener
 
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val date =
@@ -72,5 +71,8 @@ class HorizontalListAdapter :ListAdapter<Article, HorizontalListAdapter.MyViewHo
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
+    }
+    class OnClickListener(val clickListener: (marsProperty: Article) -> Unit) {
+        fun onClick(marsProperty:Article) = clickListener(marsProperty)
     }
 }

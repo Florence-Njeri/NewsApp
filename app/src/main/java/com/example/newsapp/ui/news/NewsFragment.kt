@@ -40,7 +40,10 @@ class NewsFragment : Fragment() {
         })
         binding.worldNewsList.adapter = adapter
 
-        var horizontalAdapter = HorizontalListAdapter()
+        var horizontalAdapter = HorizontalListAdapter(HorizontalListAdapter.OnClickListener{news->
+            viewModel.onNewsItemClicked(news)
+
+        })
         binding.horizontalNewsList.adapter=horizontalAdapter
 
 
@@ -72,9 +75,17 @@ class NewsFragment : Fragment() {
 
         viewModel.navigateToNewsDetails.observe(viewLifecycleOwner, Observer {news->
             news.let {
-                if (findNavController().currentDestination?.id == R.id.navigation_news){
-                this.findNavController().navigate(NewsFragmentDirections.actionNavigationNewsToNewsDetails(news.urlToImage,news.author,news.title,news.description,news.url))
-                viewModel.onNewsItemClicked(news)
+                if (null!=it) {
+                    if (findNavController().currentDestination?.id == R.id.navigation_news) {
+                        this.findNavController().navigate(
+                            NewsFragmentDirections.actionNavigationNewsToNewsDetails(
+                                it
+                            )
+                        )
+                        viewModel.onNewsItemClicked(news)
+                        viewModel.displayDetailsComplete()
+
+                    }
                 }
             }
 

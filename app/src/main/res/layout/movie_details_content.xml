@@ -1,69 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/news_details_fragment">
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".ui.newsdetails.NewsDetails"
-    tools:showIn="@layout/news_details_fragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+<variable
+    name="viewModel"
+    type="com.example.newsapp.ui.newsdetails.NewsDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/news_details_fragment">
+
+        <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            tools:context=".ui.newsdetails.NewsDetails"
+            tools:showIn="@layout/news_details_fragment">
 
 
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{String.valueOf(viewModel.selectedItem.title)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/heading"
+                android:textStyle="bold"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Title"
-        android:textColor="@color/black"
-        android:textSize="@dimen/heading"
-        android:textStyle="bold"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <TextView
+                android:id="@+id/authors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{String.valueOf(viewModel.selectedItem.author)}"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textSizeBody"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/authors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Author"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/textSizeBody"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{String.valueOf(viewModel.selectedItem.description)}"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/textSizeBody"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/overview"
-        android:textColor="@color/primaryText"
-        android:textSize="@dimen/textSizeBody"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <Button
-        android:id="@+id/read_more"
-        android:layout_width="88dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Read more"
-        android:background="@drawable/button_background_read_more"
-        android:layout_gravity="end"
-        android:gravity="center|center_vertical"
-        android:textAllCaps="false"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/white"
-        android:layout_marginRight="16dp" />
-</LinearLayout>
-</androidx.core.widget.NestedScrollView>
+            <Button
+                android:id="@+id/read_more"
+                android:layout_width="88dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:text="Read more"
+                android:background="@drawable/button_background_read_more"
+                android:layout_gravity="end"
+                android:gravity="center|center_vertical"
+                android:textAllCaps="false"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/white"
+                android:layout_marginRight="16dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
