@@ -27,10 +27,10 @@ class NewsDetails : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application= requireNotNull(activity).application
         binding = NewsDetailsFragmentBinding.inflate(inflater)
-        viewModel = ViewModelProviders.of(this).get(NewsDetailsViewModel::class.java)
+        binding.lifecycleOwner = this
         // TODO: Use the ViewModel
-        val application = requireNotNull(activity).application
 //        Actionbar
 //        binding.collapsingToolbar.title= "News Details"
         binding.toolbar.apply {
@@ -40,8 +40,13 @@ class NewsDetails : Fragment() {
 
         }
 
+        /**
+         * Get the selected properties from the arguments bundle
+         */
         var newsProperty = arguments?.let { NewsDetailsArgs.fromBundle(arguments!!).selectedProperty }
-
+        /**
+         * GEt the ViewModelFactory
+         */
         val viewModelFactory = newsProperty?.let { DetailsViewModelFactory(it,application) }
         binding.viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsDetailsViewModel::class.java)
 //        binding.layout.title.text = args?.title
@@ -52,11 +57,11 @@ class NewsDetails : Fragment() {
 //            .into(binding.newsImage) //4
 //
 //        //Read more
-//        binding.layout.readMore.setOnClickListener {
-//            val uri = Uri.parse(args?.url) // missing 'http://' will cause a crash
-//            val intent = Intent(Intent.ACTION_VIEW, uri)
-//            startActivity(intent)
-//        }
+        binding.layout.readMore.setOnClickListener {
+            val uri = Uri.parse(newsProperty?.url) // missing 'http://' will cause a crash
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
         return binding.root
     }
 

@@ -29,6 +29,9 @@ class HorizontalListAdapter(val onClickListener:OnClickListener) :ListAdapter<Ar
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(news)
+        }
         holder.bind(news,onClickListener)
 
     }
@@ -37,8 +40,8 @@ class HorizontalListAdapter(val onClickListener:OnClickListener) :ListAdapter<Ar
     class MyViewHolder(private var binding: HorizontalNewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
-        fun bind(news: Article,clickListener:OnClickListener) {
-//            binding.newsItem=news
+        fun bind(news: Article,clickListener: OnClickListener) {
+            binding.newsItem=news
             binding.clickListener=clickListener
 
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
@@ -72,7 +75,7 @@ class HorizontalListAdapter(val onClickListener:OnClickListener) :ListAdapter<Ar
             return oldItem == newItem
         }
     }
-    class OnClickListener(val clickListener: (marsProperty: Article) -> Unit) {
-        fun onClick(marsProperty:Article) = clickListener(marsProperty)
+    class OnClickListener(val clickListener: (newsProperty: Article) -> Unit) {
+        fun onClick(newsProperty:Article) = clickListener(newsProperty)
     }
 }

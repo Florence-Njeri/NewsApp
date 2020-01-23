@@ -78,11 +78,8 @@ class NewsFragment : Fragment() {
                 if (null!=it) {
                     if (findNavController().currentDestination?.id == R.id.navigation_news) {
                         this.findNavController().navigate(
-                            NewsFragmentDirections.actionNavigationNewsToNewsDetails(
-                                it
-                            )
+                            NewsFragmentDirections.actionNavigationNewsToNewsDetails(it)
                         )
-                        viewModel.onNewsItemClicked(news)
                         viewModel.displayDetailsComplete()
 
                     }

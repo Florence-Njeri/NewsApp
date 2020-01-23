@@ -25,6 +25,9 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAda
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         //Bind item at the given position to the recycler view
         val news: Article = getItem(position)
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(news)
+        }
         holder.bind(news,clickListener)
     }
 
@@ -37,7 +40,7 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAda
             clickListener: NewsListener
         ) {
 
-//            binding.newsItem=news
+            binding.newsItem=news
             binding.clickListener=clickListener
             val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val date =
