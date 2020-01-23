@@ -1,12 +1,12 @@
 package com.example.newsapp.data
 
 
-import android.os.Parcel
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize data class Article(
+@Parcelize
+data class Article(
     @Json(name = "author")
     val author: String?,
     @Json(name = "publishedAt")

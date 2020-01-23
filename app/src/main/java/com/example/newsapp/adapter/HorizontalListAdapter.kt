@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.HorizontalNewsItemBinding
-import com.example.newsapp.databinding.NewsItemBinding
-import com.example.newsapp.generated.callback.OnClickListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,11 +55,7 @@ class HorizontalListAdapter(val onClickListener:OnClickListener) :ListAdapter<Ar
             //Convert image URI to URL
             Glide.with(itemView)  //2
                 .load(news.urlToImage) //3
-//                .centerCrop() //4
-//                .placeholder(R.drawable.ic_image_place_holder) //5
-//                .error(R.drawable.ic_broken_image) //6
-//                .fallback(R.drawable.ic_no_image) //7
-                .into(binding.newsImage) //8            newsImage.setImageResource(R.drawable.born_a_crime)
+                .into(binding.newsImage) //4
         }
 
     }

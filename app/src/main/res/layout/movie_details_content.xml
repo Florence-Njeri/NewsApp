@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="viewModel"
-    type="com.example.newsapp.ui.newsdetails.NewsDetailsViewModel" />
+        <variable
+            name="viewModel"
+            type="com.example.newsapp.ui.newsdetails.NewsDetailsViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@{String.valueOf(viewModel.selectedItem.title)}"
+                android:text="@{viewModel.selectedItem.title}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading"
                 android:textStyle="bold"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@{String.valueOf(viewModel.selectedItem.author)}"
+                android:text="@{viewModel.selectedItem.author}"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/textSizeBody"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@{String.valueOf(viewModel.selectedItem.description)}"
+                android:text="@{viewModel.selectedItem.description}"
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/textSizeBody"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -72,7 +72,8 @@
                 android:textAllCaps="false"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/white"
-                android:layout_marginRight="16dp" />
+                android:layout_marginRight="16dp"
+               />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

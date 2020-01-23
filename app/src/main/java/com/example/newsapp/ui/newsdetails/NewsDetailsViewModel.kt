@@ -1,6 +1,10 @@
 package com.example.newsapp.ui.newsdetails
 
 import android.app.Application
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,12 +16,14 @@ class NewsDetailsViewModel(
 ) : ViewModel() {
 
     // TODO: Implement the ViewModel
-    var _selectedItem=MutableLiveData<Article>()
+    private var _selectedItem = MutableLiveData<Article>()
     val selectedItem: LiveData<Article>
-        get() =_selectedItem
+        get() = _selectedItem
 
     init {
-        _selectedItem.value=news
+        _selectedItem.value = news
+        Log.i("SelectedItem", _selectedItem.value.toString())
     }
+
 
 }
