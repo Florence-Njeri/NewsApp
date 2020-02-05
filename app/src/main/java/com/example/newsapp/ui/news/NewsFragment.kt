@@ -13,7 +13,7 @@ import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.adapter.NewsListener
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {
@@ -34,7 +34,7 @@ class NewsFragment : Fragment() {
 
         binding.newsViewModel=viewModel
         binding.lifecycleOwner=this
-        var adapter = NewsAdapter(NewsListener { news: Article->
+        var adapter = NewsAdapter(NewsListener { news: Article ->
                 viewModel.onNewsItemClicked(news)
 
         })
@@ -78,8 +78,8 @@ class NewsFragment : Fragment() {
                 if (null!=it) {
                     if (findNavController().currentDestination?.id == R.id.navigation_news) {
                         this.findNavController().navigate(
-                            NewsFragmentDirections.actionNavigationNewsToNewsDetails(it)
-                        )
+                            NewsFragmentDirections.actionNavigationNewsToNewsDetails(it))
+
                         viewModel.displayDetailsComplete()
 
                     }

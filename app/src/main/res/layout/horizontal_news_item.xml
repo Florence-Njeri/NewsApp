@@ -11,7 +11,7 @@
 
             <variable
                 name="newsItem"
-                type="com.example.newsapp.database.Article" />
+                type="com.example.newsapp.data.Article" />
 
             <variable
                 name="clickListener"

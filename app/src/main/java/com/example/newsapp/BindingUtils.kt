@@ -2,7 +2,7 @@ package com.example.newsapp
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 
 class NewsDetailsViewModel(
     news: Article,

@@ -1,5 +1,5 @@
 package com.example.newsapp.network
-import com.example.newsapp.database.NewsResults
+import com.example.newsapp.data.NewsResults
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

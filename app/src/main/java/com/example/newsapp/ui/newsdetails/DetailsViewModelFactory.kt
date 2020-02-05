@@ -3,7 +3,7 @@ package com.example.newsapp.ui.newsdetails
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 
 /**
  * A factory method to instantiate the ViewModel.

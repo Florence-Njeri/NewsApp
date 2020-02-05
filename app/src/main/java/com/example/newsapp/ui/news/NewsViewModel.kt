@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 import com.example.newsapp.model.HorizontalNewsRepository
 import com.example.newsapp.model.NewsRepository
 import com.example.newsapp.network.NetworkClient

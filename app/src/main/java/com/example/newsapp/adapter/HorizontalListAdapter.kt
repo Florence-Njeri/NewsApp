@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.newsapp.database.Article
+import com.example.newsapp.data.Article
 import com.example.newsapp.databinding.HorizontalNewsItemBinding
 import java.text.SimpleDateFormat
 import java.util.*
