@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.newsapp.data.Article
+import com.example.newsapp.database.Article
 import com.example.newsapp.databinding.NewsItemBinding
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.text.SimpleDateFormat

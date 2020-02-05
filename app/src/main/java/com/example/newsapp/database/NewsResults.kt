@@ -1,4 +1,4 @@
-package com.example.newsapp.data
+package com.example.newsapp.database
 
 
 import com.squareup.moshi.Json

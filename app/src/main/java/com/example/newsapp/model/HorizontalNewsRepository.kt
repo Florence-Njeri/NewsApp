@@ -1,6 +1,6 @@
 package com.example.newsapp.model
 
-import com.example.newsapp.data.Article
+import com.example.newsapp.database.Article
 import com.example.newsapp.network.NetworkClientApi
 
 class HorizontalNewsRepository(private val api: NetworkClientApi):BaseRepository() {

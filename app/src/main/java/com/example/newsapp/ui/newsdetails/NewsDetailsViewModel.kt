@@ -1,14 +1,11 @@
 package com.example.newsapp.ui.newsdetails
 
 import android.app.Application
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newsapp.data.Article
+import com.example.newsapp.database.Article
 
 class NewsDetailsViewModel(
     news: Article,

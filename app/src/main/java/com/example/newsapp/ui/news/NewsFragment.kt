@@ -13,7 +13,7 @@ import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.adapter.NewsListener
-import com.example.newsapp.data.Article
+import com.example.newsapp.database.Article
 import com.example.newsapp.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {

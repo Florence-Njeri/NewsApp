@@ -1,16 +1,10 @@
 package com.example.newsapp
 
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.example.newsapp.data.Article
-import kotlinx.android.synthetic.main.news_item.view.*
+import com.example.newsapp.database.Article
 import java.text.SimpleDateFormat
 import java.util.*
-import android.R
-import com.bumptech.glide.request.RequestOptions
-
 
 
 class BindingUtils {
