@@ -1,37 +1,21 @@
 package com.example.newsapp.data
-
-
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
-
-
 @Parcelize
-@Entity(tableName = "news_article_table")
 data class Article(
-    @PrimaryKey(autoGenerate = true)
-    val newsId:Long=0L,
-    @ColumnInfo(name = "author")
     @Json(name = "author")
-    val author: String?,
-    @ColumnInfo(name = "published_at")
+    val author: String?=null,
     @Json(name = "publishedAt")
-    val publishedAt: String?,
-    @ColumnInfo(name = "title")
+    val publishedAt: String?=null,
     @Json(name = "title")
-    val title: String?,
-    @ColumnInfo(name = "url")
+    val title: String?=null,
     @Json(name = "url")
-    val url: String?,
-    @ColumnInfo(name = "url_to_image")
+    val url: String?=null,
     @Json(name = "urlToImage")
-    val urlToImage: String?,
-    @ColumnInfo(name = "description")
+    val urlToImage: String?=null,
     @Json(name = "description")
-    val description:String?
+    val description:String?=null
 
 ):Parcelable

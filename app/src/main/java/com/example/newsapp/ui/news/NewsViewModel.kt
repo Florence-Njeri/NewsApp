@@ -49,7 +49,7 @@ class NewsViewModel : ViewModel() {
         //Done on background thread
         scope.launch {
             val news = repository.fetchNews()
-            Log.d("NewsList:iveData", news.toString())
+            Log.d("NewsListLiveData", news.toString())
             if (news != null) {
                 if (news.size > 0) {
                     newsLiveData.postValue(news)
