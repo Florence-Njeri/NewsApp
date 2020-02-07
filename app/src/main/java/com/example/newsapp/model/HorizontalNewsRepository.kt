@@ -12,7 +12,7 @@ class HorizontalNewsRepository(private val api: NetworkClientApi):BaseRepository
 
         //safeApiCall is defined in BaseRepository.kt
         val horizontalMovieResponse = safeApiCall(
-            call = { api.getHorizotalNewsAsync("Apple").await() },
+            call = { api.getHorizontalNewsAsync("Apple").await() },
             errorMessage = "Error Fetching Popular Movies"
         )
 

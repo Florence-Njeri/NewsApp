@@ -1,15 +1,20 @@
 package com.example.newsapp.ui.news
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.data.Article
+import com.example.newsapp.database.NewsDatabase.Companion.getDatabase
 import com.example.newsapp.model.HorizontalNewsRepository
-import com.example.newsapp.model.NewsRepository
 import com.example.newsapp.network.NetworkClient
+import com.example.newsapp.repository.NewsRepository
 import kotlinx.coroutines.*
+import java.io.IOException
 import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
 
 /**
@@ -19,62 +24,52 @@ import kotlin.coroutines.CoroutineContext
  * The ViewModel survives configuration changes
  */
 
-class NewsViewModel : ViewModel() {
-    val _news = MutableLiveData<Article>()
+class NewsViewModel(application: Application) : AndroidViewModel(application)  {
 
-    val news: LiveData<Article>
-        get() = _news
     //Fetch data
-    private val parentJob = Job()
+    /**
+     * This is the job for all coroutines started by this ViewModel.
+     *
+     * Cancelling this job will cancel all coroutines started by this ViewModel.
+     */
+    private val viewModelJob = SupervisorJob()
 
-    private val coroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Default
-
-    private val scope = CoroutineScope(coroutineContext)
+    /**
+     * This is the main scope for all coroutines launched by MainViewModel.
+     *
+     * Since we pass viewModelJob, you can cancel all coroutines launched by uiScope by calling
+     * viewModelJob.cancel()
+     */
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     //LiveData for navigation
     private val _navigateToNewsDetails = MutableLiveData<Article>()
     val navigateToNewsDetails: LiveData<Article>
         get() = _navigateToNewsDetails
 
+    /**
+     * The data source this ViewModel will fetch results from.
+     */
 
-    private val repository: NewsRepository = NewsRepository(NetworkClient.theGuardianApi)
-    private val horizontalNewsRepository: HorizontalNewsRepository =
-        HorizontalNewsRepository(NetworkClient.theGuardianApi)
-    val newsLiveData = MutableLiveData<MutableList<Article>>()
-    val horizontalNewsLiveData = MutableLiveData<MutableList<Article>>()
-
-
-    fun fetchNews() {
-        //Done on background thread
-        scope.launch {
-            val news = repository.fetchNews()
-            Log.d("NewsListLiveData", news.toString())
-            if (news != null) {
-                if (news.size > 0) {
-                    newsLiveData.postValue(news)
-
-                }
-            }
+    private val database = getDatabase(application)
+    private val videosRepository = NewsRepository(database)
 
 
+    /**
+     * Refresh data from the repository. Use a coroutine launch to run in a
+     * background thread.
+     */
+    /**
+     * init{} is called immediately when this ViewModel is created.
+     */
+    init {
+        viewModelScope.launch {
+            videosRepository.refreshNews()
         }
     }
 
-    fun fetchHorizontalNews() {
-        //Done on background thread
-        scope.launch {
-            val horizontalListNews = horizontalNewsRepository.fetchHorizontalNews()
-            if (horizontalListNews != null) {
-                if (horizontalListNews.size > 0) {
-                    horizontalNewsLiveData.postValue(horizontalListNews)
+    val news = videosRepository.news
 
-                }
-            }
-
-
-        }
-    }
 
     /** Handle RecyclerViewClicks**/
     fun onNewsItemClicked(news:Article) {
@@ -87,7 +82,13 @@ class NewsViewModel : ViewModel() {
         _navigateToNewsDetails.value = null
 
     }
-    //To cancel the job request when the view model is destroyed
-    fun cancelAllRequests() = coroutineContext.cancel()
+    /**
+     * Cancel all coroutines when the ViewModel is cleared
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
 }

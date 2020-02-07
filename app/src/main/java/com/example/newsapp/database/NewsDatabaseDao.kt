@@ -2,7 +2,6 @@ package com.example.newsapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.newsapp.data.Article
 
 /**
  * Add a wa to save data @param insert
@@ -19,6 +18,6 @@ interface NewsDatabaseDao {
     * method to insert a list of articles fetched from the network into the database
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( videos: List<DatabaseArticle>)
+    fun insertAll(videos: Array<DatabaseArticle>)
 
 }
