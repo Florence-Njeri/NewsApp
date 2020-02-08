@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.newsapp.data.Article
 import com.squareup.moshi.Json
+import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "news_article_table")
 data class DatabaseArticle(
@@ -19,7 +20,7 @@ data class DatabaseArticle(
     val title: String?=null,
     @PrimaryKey
     @Json(name = "url")
-    val url: String?=null,
+    val url: String,
     @ColumnInfo(name = "url_to_image")
     @Json(name = "urlToImage")
     val urlToImage: String?=null,

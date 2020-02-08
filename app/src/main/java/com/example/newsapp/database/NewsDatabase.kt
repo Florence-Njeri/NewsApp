@@ -29,11 +29,7 @@ abstract class NewsDatabase :RoomDatabase(){
                         context.applicationContext,
                         NewsDatabase::class.java,
                         "news_fetched_database"
-                    )
-                        //For migration i.e. if we change the migration schema b changine no. of colims we need to convert rows in old schema to rows in the new shema
-                        .fallbackToDestructiveMigration()
-                        .build()
-
+                    ).build()
                 }
                 return INSTANCE
             }

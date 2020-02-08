@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.newsapp.data.Article
+import com.example.newsapp.database.DatabaseArticle
 import com.example.newsapp.database.NewsDatabase
 import com.example.newsapp.database.NewsDatabaseDao
 import junit.framework.Assert.assertEquals
@@ -33,10 +34,10 @@ class NewsDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetNight() {
-        val newsArticle = Article()
-        newsDao.insert(newsArticle)
-        val article = newsDao.getArticle()
-        assertEquals(article?.title, -1)
+        val newsArticle =DatabaseArticle()
+        newsDao.insertAll(arrayOf(newsArticle))
+        val article = newsDao.getAllArticles()
+        assertEquals(article.value, -1)
     }
     @After
     @Throws(IOException::class)

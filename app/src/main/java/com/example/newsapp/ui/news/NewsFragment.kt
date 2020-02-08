@@ -18,16 +18,27 @@ import com.example.newsapp.databinding.FragmentNewsBinding
 
 class NewsFragment : Fragment() {
 
-    private lateinit var viewModel: NewsViewModel
     private lateinit var binding: FragmentNewsBinding
-
+    private val viewModel: NewsViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onActivityCreated()"
+        }
+        ViewModelProviders.of(this, NewsViewModel.Factory(activity.application))
+            .get(NewsViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel =ViewModelProviders.of(this).get(NewsViewModel::class.java)
+
+        /**
+         * One way to delay creation of the viewModel until an appropriate lifecycle method is to use
+         * lazy. This requires that viewModel not be referenced before onActivityCreated, which we
+         * do in this Fragment.
+         */
+
 
         binding =FragmentNewsBinding.inflate(inflater)
         binding.toolbar.title= "News"
@@ -47,8 +58,7 @@ class NewsFragment : Fragment() {
         binding.horizontalNewsList.adapter=horizontalAdapter
 
 
-        viewModel.fetchNews()
-        viewModel.newsLiveData .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.news .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {
@@ -60,8 +70,7 @@ class NewsFragment : Fragment() {
                 }
             }
         })
-        viewModel.fetchHorizontalNews()
-        viewModel.horizontalNewsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.news.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {

@@ -44,12 +44,12 @@ data class NetworkArticleContainer(val articles: List<NetworkArticle>)
  */
 @JsonClass(generateAdapter = true)
 data class NetworkArticle(
-        val title: String,
-        val description: String,
+        val title: String? = null,
+        val description: String? = null,
         val url: String,
-        val author: String,
-        val publishedAt: String,
-        val urlToImage: String?)
+        val author: String? = null,
+        val publishedAt: String? = null,
+        val urlToImage: String? = null)
 
 /**
  * Convert Network results to domain objects

@@ -1,20 +1,14 @@
 package com.example.newsapp.ui.news
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.newsapp.data.Article
 import com.example.newsapp.database.NewsDatabase.Companion.getDatabase
-import com.example.newsapp.model.HorizontalNewsRepository
-import com.example.newsapp.network.NetworkClient
 import com.example.newsapp.repository.NewsRepository
-import kotlinx.coroutines.*
-import java.io.IOException
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 
 /**
@@ -52,7 +46,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
      */
 
     private val database = getDatabase(application)
-    private val videosRepository = NewsRepository(database)
+    private val newsRepository = NewsRepository(database)
 
 
     /**
@@ -64,11 +58,12 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
      */
     init {
         viewModelScope.launch {
-            videosRepository.refreshNews()
+            newsRepository.refreshNews()
+
         }
     }
 
-    val news = videosRepository.news
+    val news = newsRepository.news
 
 
     /** Handle RecyclerViewClicks**/
@@ -89,6 +84,17 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
         super.onCleared()
         viewModelJob.cancel()
     }
-
+    /**
+     * Factory for constructing NewsViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(NewsViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return NewsViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 
 }
