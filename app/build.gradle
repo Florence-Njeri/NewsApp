@@ -110,4 +110,9 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.0.0"
     kapt "android.arch.persistence.room:compiler:1.0.0"
 
+    //WorkManager
+    implementation "android.arch.work:work-runtime-ktx:$version_work"
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
 }

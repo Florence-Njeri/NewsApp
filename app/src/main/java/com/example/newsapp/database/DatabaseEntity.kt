@@ -8,7 +8,7 @@ import com.squareup.moshi.Json
 import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "news_article_table")
-data class DatabaseArticle(
+data class DatabaseArticle constructor(
     @ColumnInfo(name = "author")
     @Json(name = "author")
     val author: String?=null,

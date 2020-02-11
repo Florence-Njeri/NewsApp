@@ -58,7 +58,7 @@ class NewsFragment : Fragment() {
         binding.horizontalNewsList.adapter=horizontalAdapter
 
 
-        viewModel.news .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.horizontalNews .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {
@@ -66,18 +66,18 @@ class NewsFragment : Fragment() {
                     /**                   Use submitList() to keep the list updated**/
                     adapter.submitList(it)
                 } else {
-                    Toast.makeText(activity, "Empty news list !!!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Empty news1 list !!!", Toast.LENGTH_LONG).show()
                 }
             }
         })
-        viewModel.news.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.news1.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {
                 if (it != null) {
                     horizontalAdapter.submitList(it)
                 } else {
-                    Toast.makeText(activity, "Empty news list !!!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Empty news1 list !!!", Toast.LENGTH_LONG).show()
                 }
             }
         })

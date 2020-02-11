@@ -9,7 +9,7 @@ import retrofit2.http.Query
  */
 interface NetworkClientApi {
     //    @GET("search?")
-//    fun getNews(@Query("api_key") api_key: String): Call<NewsResults>
+//    fun getNews1(@Query("api_key") api_key: String): Call<NewsResults>
     @GET("v2/top-headlines")
     fun getNewsAsync(@Query("q") query: String): Deferred<NetworkArticleContainer>
     @GET("v2/top-headlines")

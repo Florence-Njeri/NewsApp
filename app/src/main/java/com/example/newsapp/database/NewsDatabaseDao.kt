@@ -18,6 +18,6 @@ interface NewsDatabaseDao {
     * method to insert a list of articles fetched from the network into the database
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(videos: Array<DatabaseArticle>)
+    fun insertAll(news: Array<DatabaseArticle>)
 
 }

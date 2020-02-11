@@ -11,15 +11,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 // Pass in a NewsDatabase object as the class's constructor parameter to access the Dao methods.
+//
 class NewsRepository (private val newsDatabase: NewsDatabase) {
 
     // use Transformations.map to convert the list of database objects to a list of domain objects.
-    val news: LiveData<List<Article>> =Transformations.map(newsDatabase.newsDatabaseDao.getAllArticles()){
-        it.asDomainModel()
-    }
+    val news: LiveData<List<Article>> =
+        Transformations.map(newsDatabase.newsDatabaseDao.getAllArticles()) {
+            it.asDomainModel()
+        }
 
     /**
-     * Refresh the news stored in the offline cache.
+     * Refresh the news1 stored in the offline cache.
      *
      * This function uses the IO dispatcher to ensure the database insert database operation
      * happens on the IO dispatcher. By switching to the IO dispatcher using `withContext` this
@@ -28,10 +30,15 @@ class NewsRepository (private val newsDatabase: NewsDatabase) {
      */
     suspend fun refreshNews() {
         withContext(Dispatchers.IO) {
-            val newslist=NetworkClient.theGuardianApi.getNewsAsync("tech").await()
-            val horizontalNewslist =NetworkClient.theGuardianApi.getHorizontalNewsAsync("tech").await()
+            val newslist = NetworkClient.theGuardianApi.getNewsAsync("tech").await()
+            newsDatabase.newsDatabaseDao.insertAll(newslist.asDatabaseModel())
+        }
+    }
 
-        newsDatabase.newsDatabaseDao.insertAll(newslist.asDatabaseModel())
+    suspend fun refreshHorizontalNews() {
+        withContext(Dispatchers.IO) {
+            val horizontalNewslist =
+                NetworkClient.theGuardianApi.getHorizontalNewsAsync("bitcoin").await()
             newsDatabase.newsDatabaseDao.insertAll(horizontalNewslist.asDatabaseModel())
         }
     }
