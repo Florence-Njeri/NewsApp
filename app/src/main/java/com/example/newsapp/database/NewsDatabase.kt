@@ -28,7 +28,7 @@ abstract class NewsDatabase :RoomDatabase(){
                     INSTANCE= Room.databaseBuilder(
                         context.applicationContext,
                         NewsDatabase::class.java,
-                        "news_fetched_database"
+                        "news"
                     ).build()
                 }
                 return INSTANCE

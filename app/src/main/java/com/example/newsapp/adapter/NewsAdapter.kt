@@ -50,7 +50,7 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<Article, NewsAda
             val dateStr = formatter.format(date)
 
 
-            binding.author.text = news.author
+            binding.author.text = news.author.toString()
             binding.newsTitle.text = news.title
             binding.publishedAt.text = dateStr
 

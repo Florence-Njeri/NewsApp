@@ -60,7 +60,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
     init {
         viewModelScope.launch {
             newsRepository.refreshNews()
-            newsRepository.refreshHorizontalNews()
+           // newsRepository.refreshHorizontalNews()
 
         }
     }

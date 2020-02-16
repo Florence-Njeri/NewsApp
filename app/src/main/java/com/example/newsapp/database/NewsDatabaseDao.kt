@@ -11,7 +11,7 @@ import androidx.room.*
 interface NewsDatabaseDao {
 
     //Return a list of all the articles from the db
-    @Query("SELECT * FROM news_article_table ")
+    @Query("SELECT * FROM news_article_table ORDER BY published_at DESC")
     fun getAllArticles():LiveData<List<DatabaseArticle>>
 
     /**Update DB and insert data fetched from network into it

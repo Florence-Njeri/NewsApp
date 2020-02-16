@@ -31,6 +31,8 @@ class NewsRepository (private val newsDatabase: NewsDatabase) {
     suspend fun refreshNews() {
         withContext(Dispatchers.IO) {
             val newslist = NetworkClient.theGuardianApi.getNewsAsync("tech").await()
+            //Clear then insert new data
+
             newsDatabase.newsDatabaseDao.insertAll(newslist.asDatabaseModel())
         }
     }

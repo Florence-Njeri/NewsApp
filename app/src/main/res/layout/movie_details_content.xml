@@ -15,9 +15,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/news_details_fragment">
 
-        <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -36,29 +34,45 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/heading"
                 android:textStyle="bold"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:text="Robbie Williams: The Christmas Present review – perfect for regifting." />
 
             <TextView
                 android:id="@+id/authors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{viewModel.selectedItem.author}"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/black"
                 android:textSize="@dimen/textSizeBody"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                android:textStyle="bold"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:text="Robbie Williams" />
+
+            <TextView
+                android:id="@+id/publishedAt"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lusitana"
+                android:text="22nd November, 2019"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/textSizeSmall"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{viewModel.selectedItem.description}"
-                android:textColor="@color/primaryText"
+                android:textColor="@color/secondaryText"
                 android:textSize="@dimen/textSizeBody"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:text="Thrown to indicate that an array has been accessed with an illegal index. The index is either negative or greater than or equal to the size of the array." />
 
             <Button
                 android:id="@+id/read_more"
