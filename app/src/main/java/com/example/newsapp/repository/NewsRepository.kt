@@ -3,6 +3,7 @@ package com.example.newsapp.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.newsapp.data.Article
+import com.example.newsapp.database.HorizontalNewsDatabase
 import com.example.newsapp.database.NewsDatabase
 import com.example.newsapp.database.asDomainModel
 import com.example.newsapp.network.NetworkClient
@@ -12,11 +13,16 @@ import kotlinx.coroutines.withContext
 
 // Pass in a NewsDatabase object as the class's constructor parameter to access the Dao methods.
 //
-class NewsRepository (private val newsDatabase: NewsDatabase) {
+class NewsRepository(private val newsDatabase: NewsDatabase, private val horizontalNewsDatabase: HorizontalNewsDatabase) {
 
     // use Transformations.map to convert the list of database objects to a list of domain objects.
     val news: LiveData<List<Article>> =
         Transformations.map(newsDatabase.newsDatabaseDao.getAllArticles()) {
+            it.asDomainModel()
+        }
+    // use Transformations.map to convert the list of database objects to a list of domain objects.
+    val horizontalNews: LiveData<List<Article>> =
+        Transformations.map(horizontalNewsDatabase.horizontalNewsDatabaseDao.getAllArticles()) {
             it.asDomainModel()
         }
 
@@ -31,8 +37,6 @@ class NewsRepository (private val newsDatabase: NewsDatabase) {
     suspend fun refreshNews() {
         withContext(Dispatchers.IO) {
             val newslist = NetworkClient.theGuardianApi.getNewsAsync("tech").await()
-            //Clear then insert new data
-
             newsDatabase.newsDatabaseDao.insertAll(newslist.asDatabaseModel())
         }
     }
@@ -40,8 +44,8 @@ class NewsRepository (private val newsDatabase: NewsDatabase) {
     suspend fun refreshHorizontalNews() {
         withContext(Dispatchers.IO) {
             val horizontalNewslist =
-                NetworkClient.theGuardianApi.getHorizontalNewsAsync("bitcoin").await()
-            newsDatabase.newsDatabaseDao.insertAll(horizontalNewslist.asDatabaseModel())
+                NetworkClient.theGuardianApi.getHorizontalNewsAsync("apple").await()
+            horizontalNewsDatabase.horizontalNewsDatabaseDao.insertAll(horizontalNewslist.asDatabaseModel())
         }
     }
 

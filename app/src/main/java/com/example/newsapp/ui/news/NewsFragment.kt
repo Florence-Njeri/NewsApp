@@ -58,7 +58,7 @@ class NewsFragment : Fragment() {
         binding.horizontalNewsList.adapter=horizontalAdapter
 
 
-        viewModel.news1 .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.news.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {
@@ -70,7 +70,7 @@ class NewsFragment : Fragment() {
                 }
             }
         })
-        viewModel.news1.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.horizontalNews.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             //TODO - Your Update UI Logic
             it.let {

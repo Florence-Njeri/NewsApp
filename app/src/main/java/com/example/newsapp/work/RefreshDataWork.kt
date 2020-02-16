@@ -3,6 +3,7 @@ package com.example.newsapp.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.example.newsapp.database.HorizontalNewsDatabase.Companion.getHorizontalNewsDatabase
 import com.example.newsapp.database.NewsDatabase.Companion.getDatabase
 import com.example.newsapp.repository.NewsRepository
 import retrofit2.HttpException
@@ -20,7 +21,8 @@ companion object{
 
     override suspend fun doWork(): Payload {
         val database = getDatabase(applicationContext)
-        val repository = NewsRepository(database)
+        val horizontalNewsDatabase= getHorizontalNewsDatabase(applicationContext)
+        val repository = NewsRepository(database,horizontalNewsDatabase )
         return try {
             repository.refreshHorizontalNews()
             repository.refreshNews()

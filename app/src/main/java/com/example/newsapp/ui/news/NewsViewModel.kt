@@ -3,9 +3,8 @@ package com.example.newsapp.ui.news
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.newsapp.data.Article
+import com.example.newsapp.database.HorizontalNewsDatabase.Companion.getHorizontalNewsDatabase
 import com.example.newsapp.database.NewsDatabase.Companion.getDatabase
-import com.example.newsapp.network.NetworkClient
-import com.example.newsapp.network.asDomainModel
 import com.example.newsapp.repository.NewsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +47,8 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
      */
 
     private val database = getDatabase(application)
-    private val newsRepository = NewsRepository(database)
+    private val horizontalNewsDatabase=getHorizontalNewsDatabase(application)
+    private val newsRepository = NewsRepository(database,horizontalNewsDatabase)
 
     /**
      * Refresh data from the repository. Use a coroutine launch to run in a
@@ -60,13 +60,13 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
     init {
         viewModelScope.launch {
             newsRepository.refreshNews()
-           // newsRepository.refreshHorizontalNews()
+            newsRepository.refreshHorizontalNews()
 
         }
     }
 
-    val news1 = newsRepository.news
-    val horizontalNews=newsRepository.news
+    val news = newsRepository.news
+    val horizontalNews=newsRepository.horizontalNews
 
 
     /** Handle RecyclerViewClicks**/
