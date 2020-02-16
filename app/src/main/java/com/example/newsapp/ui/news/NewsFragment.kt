@@ -64,7 +64,7 @@ class NewsFragment : Fragment() {
             it.let {
                 if (it != null) {
                     /**                   Use submitList() to keep the list updated**/
-                    adapter.submitList(it)
+                    adapter.addHeaderAndSubmitList(it)
                 } else {
                     Toast.makeText(activity, "Empty news1 list !!!", Toast.LENGTH_LONG).show()
                 }

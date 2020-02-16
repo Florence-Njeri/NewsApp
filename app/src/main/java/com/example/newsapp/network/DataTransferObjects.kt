@@ -57,6 +57,7 @@ data class NetworkArticle(
 fun NetworkArticleContainer.asDomainModel(): List<Article> {
     return articles.map {
         Article(
+            id=it.id,
             url = it.url,
             title = it.title,
             description = it.description,

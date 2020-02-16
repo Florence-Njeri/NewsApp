@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "news_article_table")
 data class DatabaseArticle constructor(
+    val id:Long,
     @ColumnInfo(name = "author")
     @Json(name = "author")
     val author: String?=null,
@@ -35,6 +36,7 @@ data class DatabaseArticle constructor(
 fun List<DatabaseArticle>.asDomainModel(): List<Article> {
     return map {
         Article(
+            id=it.id,
             url = it.url,
             title = it.title,
             description = it.description,

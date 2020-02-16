@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Article(
+    val id:Long,
     @Json(name = "author")
     val author: String?=null,
     @Json(name = "publishedAt")
