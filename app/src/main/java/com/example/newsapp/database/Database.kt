@@ -9,7 +9,7 @@ import com.example.newsapp.data.Article
 import okhttp3.internal.Internal.instance
 
 //We have onl one table so for entities we suppl
-@Database(entities = [DatabaseArticle::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseArticle::class], version = 2, exportSchema = false)
 abstract class NewsDatabase :RoomDatabase(){
 
     //Declare an abstract value of NewsDao
@@ -30,7 +30,8 @@ abstract class NewsDatabase :RoomDatabase(){
                         context.applicationContext,
                         NewsDatabase::class.java,
                         "news"
-                    ).build()
+                    ).fallbackToDestructiveMigration()
+                        .build()
                 }
                 return INSTANCE
             }
@@ -38,7 +39,7 @@ abstract class NewsDatabase :RoomDatabase(){
     }
 }
 //We have onl one table so for entities we suppl
-@Database(entities = [DatabaseArticle::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseArticle::class], version = 2, exportSchema = false)
 abstract class HorizontalNewsDatabase :RoomDatabase(){
 
     //Declare an abstract value of NewsDao
@@ -59,7 +60,8 @@ abstract class HorizontalNewsDatabase :RoomDatabase(){
                         context.applicationContext,
                         HorizontalNewsDatabase::class.java,
                         "horizontal_news"
-                    ).build()
+                    ).fallbackToDestructiveMigration()
+                        .build()
                 }
                 return INSTANCE
             }

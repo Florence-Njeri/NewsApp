@@ -1,4 +1,5 @@
 package com.example.newsapp.adapter
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,18 @@ private val ITEM_VIEW_TYPE_ITEM = 1
 class NewsAdapter(val clickListener:NewsListener) : ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCallback){
     //List conversions on background thread
     private val adapterScope= CoroutineScope(Dispatchers.Default)
-
+    fun addHeaderAndSubmitList(list: List<Article>?) {
+        adapterScope.launch {
+            val items = when (list) {
+                null -> listOf(DataItem.Header)
+                else -> listOf(DataItem.Header) + list.map{ DataItem.NewsArticle(it)}
+            }
+            //Get back to UI thread to update UI
+            withContext(Dispatchers.Main) {
+                submitList(items)
+            }
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var layoutInflater = LayoutInflater.from(parent.context)
 
@@ -36,19 +48,6 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<DataItem, Recycl
         }
     }
 
-
-   fun addHeaderAndSubmitList(list: List<Article>?) {
-        adapterScope.launch {
-            val items = when (list) {
-                null -> listOf(DataItem.Header)
-                else -> listOf(DataItem.Header) + list.map{ DataItem.NewsArticle(it)}
-            }
-        //Get back to UI thread to update UI
-        withContext(Dispatchers.Main) {
-            submitList(items)
-        }
-    }
-}
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -115,13 +114,13 @@ class NewsAdapter(val clickListener:NewsListener) : ListAdapter<DataItem, Recycl
         }
     }
     companion object DiffCallback : DiffUtil.ItemCallback<DataItem>() {
+
         override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-            return oldItem === newItem
-
-        }
-
-        override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
             return oldItem.id == newItem.id
+        }
+        @SuppressLint("DiffUtilEquals")
+        override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+            return oldItem == newItem
         }
     }
 }
@@ -133,11 +132,12 @@ class NewsListener(val clickListener:(news:Article)-> Unit){
 sealed class DataItem{
     //This represents an item in the adapter
     data class NewsArticle(val article:Article):DataItem(){
-        override val id = article.id
+        override val id = Long.MAX_VALUE
     }
     object Header:DataItem(){
         override val id = Long.MIN_VALUE
     }
 
-    abstract val id:Long
+    abstract val id:Long?
+
 }

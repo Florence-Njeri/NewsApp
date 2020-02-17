@@ -44,12 +44,13 @@ data class NetworkArticleContainer(val articles: List<NetworkArticle>)
  */
 @JsonClass(generateAdapter = true)
 data class NetworkArticle(
-        val title: String? = null,
-        val description: String? = null,
-        val url: String,
-        val author: String? = null,
-        val publishedAt: String? = null,
-        val urlToImage: String? = null)
+    val title: String? = null,
+    val description: String? = null,
+    val url: String,
+    val author: String? = null,
+    val publishedAt: String? = null,
+    val urlToImage: String? = null
+)
 
 /**
  * Convert Network results to domain objects
@@ -57,7 +58,6 @@ data class NetworkArticle(
 fun NetworkArticleContainer.asDomainModel(): List<Article> {
     return articles.map {
         Article(
-            id=it.id,
             url = it.url,
             title = it.title,
             description = it.description,
@@ -74,11 +74,12 @@ fun NetworkArticleContainer.asDomainModel(): List<Article> {
 fun NetworkArticleContainer.asDatabaseModel(): Array<DatabaseArticle> {
     return articles.map {
         DatabaseArticle(
-                title = it.title,
-                description = it.description,
-                url = it.url,
-                author = it.author,
-                publishedAt = it.publishedAt,
-                urlToImage = it.urlToImage)
+            title = it.title,
+            description = it.description,
+            url = it.url,
+            author = it.author,
+            publishedAt = it.publishedAt,
+            urlToImage = it.urlToImage
+        )
     }.toTypedArray()
 }
