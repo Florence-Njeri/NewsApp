@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.newsapp.R
 import com.example.newsapp.adapter.HorizontalListAdapter
 import com.example.newsapp.adapter.NewsAdapter
@@ -56,7 +57,6 @@ class NewsFragment : Fragment() {
 
         })
         binding.horizontalNewsList.adapter=horizontalAdapter
-
 
         viewModel.news.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
