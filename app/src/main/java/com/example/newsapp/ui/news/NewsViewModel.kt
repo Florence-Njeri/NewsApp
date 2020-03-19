@@ -68,7 +68,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application)  {
     val news = newsRepository.news
     val horizontalNews=newsRepository.horizontalNews
 
-
     /** Handle RecyclerViewClicks**/
     fun onNewsItemClicked(news:Article) {
         _navigateToNewsDetails.value = news
