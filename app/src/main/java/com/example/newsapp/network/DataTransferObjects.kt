@@ -18,7 +18,8 @@
 package com.example.newsapp.network
 
 import com.example.newsapp.data.Article
-import com.example.newsapp.database.DatabaseArticle
+import com.example.newsapp.data.DatabaseArticle
+import com.example.newsapp.data.NetworkArticle
 import com.squareup.moshi.JsonClass
 
 /**
@@ -42,15 +43,7 @@ data class NetworkArticleContainer(val articles: List<NetworkArticle>)
 /**
  * Videos represent a devbyte that can be played.
  */
-@JsonClass(generateAdapter = true)
-data class NetworkArticle(
-    val title: String? = null,
-    val description: String? = null,
-    val url: String,
-    val author: String? = null,
-    val publishedAt: String? = null,
-    val urlToImage: String? = null
-)
+
 
 /**
  * Convert Network results to domain objects

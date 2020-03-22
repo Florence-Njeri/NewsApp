@@ -13,6 +13,7 @@ import kotlinx.coroutines.withContext
 
 // Pass in a NewsDatabase object as the class's constructor parameter to access the Dao methods.
 //
+//we can provide a mock instance of the two databases when unit testing the repository
 class NewsRepository(private val newsDatabase: NewsDatabase, private val horizontalNewsDatabase: HorizontalNewsDatabase) {
 
     // use Transformations.map to convert the list of database objects to a list of domain objects.

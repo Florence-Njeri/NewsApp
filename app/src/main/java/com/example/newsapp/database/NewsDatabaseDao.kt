@@ -2,6 +2,7 @@ package com.example.newsapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.newsapp.data.DatabaseArticle
 
 /**
  * Add a wa to save data @param insert

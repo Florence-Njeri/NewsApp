@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import com.example.newsapp.data.Article
+import com.example.newsapp.data.DatabaseArticle
 import okhttp3.internal.Internal.instance
 
 //We have onl one table so for entities we suppl
